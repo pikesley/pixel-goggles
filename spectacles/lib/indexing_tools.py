@@ -1,7 +1,9 @@
 def index_pairs(length, offset):
     """Calculate index-pairs."""
     return [
-        (_first_index(index, offset, length), _second_index(index, offset, length))
+        tuple(
+            [method(index, offset, length) for method in (_first_index, _second_index)]
+        )
         for index in range(int(length / 2))
     ]
 
