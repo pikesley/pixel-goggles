@@ -1,4 +1,4 @@
-default: push connect
+default: format test clean
 
 push:
 	python -m mpremote cp -r *py :
@@ -10,8 +10,6 @@ connect:
 
 mount:
 	python -m mpremote mount .
-
-all: format test clean
 
 format:
 	ruff format
