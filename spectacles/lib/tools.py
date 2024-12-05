@@ -23,4 +23,4 @@ def clockwise_index(index, offset, length):
 
 def anti_clockwise_index(index, offset, length):
     """Get an index for rotating anti-clockwise."""
-    return length - 1 - ((index + offset) % length)
+    return length - clockwise_index(index, offset, length) - 1
