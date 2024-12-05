@@ -1,10 +1,10 @@
-from lib.index_management import handle_index
+from lib.pattern_index_manager import manage_index
 from patterns.patterns import patterns
 
 
 def run():
     """Do the work."""
-    index = handle_index(patterns)
+    index = manage_index(patterns)
 
     try:
         pattern = patterns[index]

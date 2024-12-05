@@ -19,7 +19,7 @@ def write_index(current_index, length):
     file.close()
 
 
-def handle_index(patterns):
+def manage_index(patterns):
     """Handle the stateful indexing."""
     index = read_index()
     write_index(index, len(patterns))
