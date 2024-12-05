@@ -7,7 +7,7 @@ from lib.context import brightness, hue_source, length, pixels
 def chaser():
     """Chase around the wheel."""
     sleep_time = 40
-    direction = "clockwise"
+    direction = "anti-clockwise"
 
     indeces = list(range(length))
 
