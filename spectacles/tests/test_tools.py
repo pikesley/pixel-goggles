@@ -1,4 +1,4 @@
-from lib.tools import index_pairs, rotation_index
+from lib.indexing_tools import index_pairs, rotation_index
 
 
 def test_index_pairs():

@@ -2,7 +2,7 @@ import time
 
 from lib.colour_tools import rgb_from_hue, scale_colour
 from lib.context import brightness, hue_source, length, pixels
-from lib.tools import index_pairs
+from lib.indexing_tools import index_pairs
 
 
 def wave():

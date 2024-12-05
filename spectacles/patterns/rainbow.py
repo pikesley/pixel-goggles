@@ -2,7 +2,7 @@ import time
 
 from lib.colour_tools import rgb_from_degrees, scale_colour
 from lib.context import brightness, length, pixels
-from lib.tools import rotation_index
+from lib.indexing_tools import rotation_index
 
 
 def rainbow():
