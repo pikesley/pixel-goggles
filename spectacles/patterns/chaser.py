@@ -1,23 +1,23 @@
 import time
 
 from lib.colour_tools import rgb_from_hue, scale_colour
-from lib.context import brightness, hue_source, pixels
+from lib.context import brightness, hue_source, length, pixels
 
 
 def chaser():
     """Chase around the wheel."""
     sleep_time = 40
 
-    indeces = list(range(len(pixels)))
+    indeces = list(range(length))
 
     while True:
         for index, scale_index in enumerate(indeces):
             hue = hue_source.hue()
             colour = rgb_from_hue(hue)["bytes"]
             pixels[index] = scale_colour(
-                # pixels[len(pixels) - 1 - index] = scale_colour(
+                # pixels[length - 1 - index] = scale_colour(
                 colour,
-                (scale_index / len(pixels)) * brightness,
+                (scale_index / length) * brightness,
             )
             pixels.write()
 

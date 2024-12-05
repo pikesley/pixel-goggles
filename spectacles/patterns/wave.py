@@ -1,7 +1,7 @@
 import time
 
 from lib.colour_tools import rgb_from_hue, scale_colour
-from lib.context import brightness, hue_source, pixels
+from lib.context import brightness, hue_source, length, pixels
 from lib.tools import index_pairs
 
 
@@ -10,7 +10,7 @@ def wave():
     sleep_time = 40
     offset = 0
 
-    pairs = index_pairs(len(pixels), offset)
+    pairs = index_pairs(length, offset)
 
     count = 0
     while True:
