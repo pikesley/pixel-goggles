@@ -2,6 +2,7 @@ import time
 
 from lib.colour_tools import rgb_from_degrees, scale_colour
 from lib.context import brightness, length, pixels
+from lib.tools import rotation_index
 
 
 def rainbow():
@@ -10,12 +11,15 @@ def rainbow():
     offset = 0
     sleep_time = 80
 
+    direction = "clockwise"
+
     while True:
         for i in range(length):
-            pixels[(i + offset) % length] = scale_colour(
-                # pixels[length - 1 - ((i + offset) % length)] = scale_colour(
-                rgb_from_degrees(i * interval)["bytes"],
-                brightness,
+            pixels[rotation_index(i, offset, length, direction=direction)] = (
+                scale_colour(
+                    rgb_from_degrees(i * interval)["bytes"],
+                    brightness,
+                )
             )
 
         pixels.write()

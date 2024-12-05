@@ -16,11 +16,11 @@ def _second_index(index, offset, length):
     return (offset - length - index - 1) % length
 
 
-def clockwise_index(index, offset, length):
-    """Get an index for rotating clockwise."""
-    return (index + offset) % length
+def rotation_index(index, offset, length, direction="clockwise"):
+    """Get a rotation index."""
+    rot_index = (index + offset) % length
 
+    if "anti" in direction:
+        rot_index = length - rot_index - 1
 
-def anti_clockwise_index(index, offset, length):
-    """Get an index for rotating anti-clockwise."""
-    return length - clockwise_index(index, offset, length) - 1
+    return rot_index
