@@ -1,4 +1,4 @@
-from lib.indexing_tools import index_pairs, rotation_index
+from lib.indexing_tools import index_pairs, intensity_list, rotation_index
 
 
 def test_index_pairs():
@@ -36,3 +36,9 @@ def test_anti_clockwise_index():
     assert rotation_index(2, 0, 12, direction="anti-clockwise") == 9  # noqa: PLR2004
 
     assert rotation_index(5, 8, 12, direction="anticlockwise") == 10  # noqa: PLR2004
+
+
+def test_intensity_list():
+    """Test the intensity list."""
+    assert intensity_list(2) == [1.0, 0.5]
+    assert intensity_list(4) == [1.0, 0.75, 0.5, 0.25]

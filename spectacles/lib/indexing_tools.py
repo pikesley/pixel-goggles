@@ -26,3 +26,8 @@ def rotation_index(index, offset, length, direction="clockwise"):
         rot_index = length - rot_index - 1
 
     return rot_index
+
+
+def intensity_list(length):
+    """Get a scaled list of brightnesses."""
+    return [((i + 1) * 1 / length) for i in range(length - 1, -1, -1)]
