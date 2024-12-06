@@ -22,7 +22,7 @@ def rotation_index(index, offset, length, direction="clockwise"):
     """Get a rotation index."""
     rot_index = (index + offset) % length
 
-    if "anti" in direction:
+    if "anti" not in direction:
         rot_index = length - rot_index - 1
 
     return rot_index
