@@ -6,12 +6,16 @@ def get_prime(side, start):
     """Work out the prime position."""
     offsets = {
         "north": 0,
-        "west": 1,
-        "south": 2,
-        "east": 3,
+        "north-west": 1,
+        "west": 2,
+        "south-west": 3,
+        "south": 4,
+        "south-east": 5,
+        "east": 6,
+        "north-east": 7,
     }
 
-    prime = (tops[side] + offsets[start] * (ring_size / 4)) % ring_size
+    prime = (tops[side] + offsets[start] * (ring_size / 8)) % ring_size
 
     if side == "left":
         prime += ring_size

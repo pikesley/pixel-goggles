@@ -111,6 +111,24 @@ def test_get_ordering():
         16,
         31,
     ]
+    assert get_ordering("left", "north-west", "clockwise") == [
+        24,
+        23,
+        22,
+        21,
+        20,
+        19,
+        18,
+        17,
+        16,
+        31,
+        30,
+        29,
+        28,
+        27,
+        26,
+        25,
+    ]
 
 
 def test_get_prime():
@@ -126,3 +144,5 @@ def test_get_prime():
 
     assert get_prime("right", "east") == 6  # noqa: PLR2004
     assert get_prime("left", "east") == 18  # noqa: PLR2004
+
+    assert get_prime("right", "south-west") == 0
