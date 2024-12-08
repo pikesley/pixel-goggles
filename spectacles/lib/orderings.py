@@ -4,9 +4,15 @@ tops = {"right": 10, "left": 22}
 
 def get_ordering(side, start, direction):  # noqa: ARG001
     """Calculate an ordering."""
+    offset = 0
+    if side == "left":
+        offset = 16
+
     prime = tops[side]
     ordering = [prime]
-    tail = list(range(prime - 1, -1, -1)) + list(range(ring_size - 1, prime, -1))
+    tail = list(range(prime - 1, -1 + offset, -1)) + list(
+        range(ring_size - 1 + offset, prime, -1)
+    )
 
     if "anti" in direction:
         tail.reverse()
