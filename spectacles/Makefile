@@ -22,6 +22,7 @@ clean:
 	@find . -depth -name .ruff_cache -exec rm -fr {} \;
 	@find . -depth -name .pytest_cache -exec rm -fr {} \;
 
+test: export TEST = 1
 test:
 	python -m pytest \
 		--random-order \
