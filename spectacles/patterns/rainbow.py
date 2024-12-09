@@ -1,18 +1,13 @@
 import time
 
-from lib.colour_tools import rgb_from_degrees, scale_colour
+from lib.colour_tools import scale_colour, spectrum
 from lib.context import brightness, pixels
 from lib.orderings import get_ordering
 
 
 def rainbow():
     """Spin the wheel."""
-    interval = 360 / 16
-
-    colours = [
-        scale_colour(rgb_from_degrees(i * interval)["bytes"], brightness)
-        for i in range(16)
-    ]
+    colours = spectrum(16)
 
     orderings = (
         get_ordering("left", "n", "clockwise"),
@@ -24,7 +19,7 @@ def rainbow():
     while True:
         for i in range(16):
             for ordering in orderings:
-                pixels[ordering[i]] = colours[i]
+                pixels[ordering[i]] = scale_colour(colours[i], brightness)
 
         pixels.write()
         colours = [colours[-1]] + colours[:-1]

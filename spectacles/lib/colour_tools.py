@@ -63,3 +63,9 @@ def scaled_rgb():
 def just_an_rgb():
     """Just generate a time-based a colour."""
     return rgb_from_hue(hue_source.hue())["bytes"]
+
+
+def spectrum(length):
+    """Generate a spectrum."""
+    interval = 360 / length
+    return [rgb_from_degrees(i * interval)["bytes"] for i in range(length)]

@@ -5,9 +5,9 @@ from patterns.spinner import spinner
 from patterns.wave import wave
 
 patterns = [
-    spinner,
-    rainbow_wave,
     sparkle,
-    wave,
     rainbow,
+    rainbow_wave,
+    spinner,
+    wave,
 ]

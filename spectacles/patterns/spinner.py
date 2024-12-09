@@ -1,6 +1,6 @@
 import time
 
-from lib.colour_tools import scale_colour, scaled_rgb
+from lib.colour_tools import just_an_rgb, scale_colour
 from lib.context import pixels
 from lib.orderings import get_ordering
 
@@ -16,7 +16,7 @@ def spinner():
 
     while True:
         for i in range(len(sequence)):
-            colour = scaled_rgb()
+            colour = just_an_rgb()
 
             for t in range(tail):
                 pixels[sequence[(i - t)] % len(sequence)] = scale_colour(
