@@ -31,7 +31,7 @@ def get_prime(side, start):
     return int(prime)
 
 
-def get_ordering(side, start, direction):
+def get_ordering(side, start, direction, overlap=False):  # noqa: FBT002
     """Calculate an ordering."""
     offset = 0
     if side == "left":
@@ -46,4 +46,9 @@ def get_ordering(side, start, direction):
     if "anti" in direction:
         tail.reverse()
 
-    return ordering + tail
+    result = ordering + tail
+
+    if overlap:
+        result += [result[0]]
+
+    return result
