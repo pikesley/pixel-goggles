@@ -1,13 +1,13 @@
 import os
 
-if os.environ["TEST"] == 1:
+if os.uname().sysname == "esp32":
     import machine
     import neopixel
 
 from conf import leds, pin, seconds_per_rotation
 from lib.time_based_hue_source import TimeBasedHueSource
 
-if os.environ["TEST"] == 1:
+if os.uname().sysname == "esp32":
     pixels = neopixel.NeoPixel(machine.Pin(pin), leds)
     length = len(pixels)
 
