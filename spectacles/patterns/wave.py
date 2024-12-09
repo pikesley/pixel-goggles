@@ -1,7 +1,7 @@
 import time
 
-from lib.colour_tools import rgb_from_hue, scale_colour
-from lib.context import hue_source, pixels
+from lib.colour_tools import just_an_rgb, scale_colour
+from lib.context import pixels
 from lib.orderings import get_pairs
 
 
@@ -17,7 +17,7 @@ def wave():
         values[t - 1] = 1 / (2**t)
 
     while True:
-        colour = rgb_from_hue(hue_source.hue())["bytes"]
+        colour = just_an_rgb()
         for index, value in enumerate(values):
             for member in sequence[index]:
                 pixels[member] = scale_colour(colour, value)

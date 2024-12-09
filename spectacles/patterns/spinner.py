@@ -1,7 +1,7 @@
 import time
 
-from lib.colour_tools import rgb_from_hue, scale_colour
-from lib.context import brightness, hue_source, pixels
+from lib.colour_tools import scale_colour, scaled_rgb
+from lib.context import pixels
 from lib.orderings import get_ordering
 
 
@@ -16,7 +16,7 @@ def spinner():
 
     while True:
         for i in range(len(sequence)):
-            colour = scale_colour(rgb_from_hue(hue_source.hue())["bytes"], brightness)
+            colour = scaled_rgb()
 
             for t in range(tail):
                 pixels[sequence[(i - t)] % len(sequence)] = scale_colour(

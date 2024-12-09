@@ -1,5 +1,7 @@
 from math import floor
 
+from lib.context import brightness, hue_source
+
 
 def get_segments():
     """Get the segments."""
@@ -51,3 +53,13 @@ def rgb_from_hue(decimal):
 def scale_colour(rgb, factor):
     """Scale a colour."""
     return [int(component * factor) for component in rgb]
+
+
+def scaled_rgb():
+    """Just generate a time-based a colour."""
+    return scale_colour(just_an_rgb(), brightness)
+
+
+def just_an_rgb():
+    """Just generate a time-based a colour."""
+    return rgb_from_hue(hue_source.hue())["bytes"]
