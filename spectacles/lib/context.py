@@ -1,15 +1,18 @@
 import os
 
+from lib.time_based_hue_source import TimeBasedHueSource
+
+pin = 10
+leds = 32
+brightness = 1
+seconds_per_rotation = 50
+
 if os.uname().sysname == "esp32":
     import machine
     import neopixel
 
-from conf import leds, pin, seconds_per_rotation
-from lib.time_based_hue_source import TimeBasedHueSource
-
-if os.uname().sysname == "esp32":
     pixels = neopixel.NeoPixel(machine.Pin(pin), leds)
     length = len(pixels)
 
-brightness = 1
+
 hue_source = TimeBasedHueSource(seconds_per_rotation)

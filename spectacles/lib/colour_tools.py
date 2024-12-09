@@ -56,12 +56,12 @@ def scale_colour(rgb, factor):
 
 
 def scaled_rgb():
-    """Just generate a time-based a colour."""
+    """Just generate a time-based, scaled colour."""
     return scale_colour(just_an_rgb(), brightness)
 
 
 def just_an_rgb():
-    """Just generate a time-based a colour."""
+    """Just generate a time-based colour."""
     return rgb_from_hue(hue_source.hue())["bytes"]
 
 

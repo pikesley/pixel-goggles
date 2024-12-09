@@ -14,6 +14,7 @@ def wave():
     values = [0] * len(sequence)
 
     for t in range(tail):
+        # inverse-square tail-off
         values[t - 1] = 1 / (2**t)
 
     while True:
