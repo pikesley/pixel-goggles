@@ -2,29 +2,31 @@ import time
 
 from lib.colour_tools import rgb_from_degrees, scale_colour
 from lib.context import brightness, pixels
-from lib.indexing_tools import rotation_index
+from lib.orderings import get_ordering
 
 
 def rainbow():
     """Spin the wheel."""
     interval = 360 / 16
-    offset = 0
-    sleep_time = 50
-    left_right_offset = 4
 
-    direction = "anticlockwise"
+    colours = [
+        scale_colour(rgb_from_degrees(i * interval)["bytes"], brightness)
+        for i in range(16)
+    ]
+
+    orderings = (
+        get_ordering("left", "n", "clockwise"),
+        get_ordering("right", "n", "clockwise"),
+    )
+
+    sleep_time = 50
 
     while True:
         for i in range(16):
-            colour = scale_colour(
-                rgb_from_degrees(i * interval)["bytes"],
-                brightness,
-            )
-            rot_index = rotation_index(i, offset, 16, direction=direction)
-            pixels[rot_index] = colour
-            pixels[((rot_index + left_right_offset) % 16) + 16] = colour
+            for ordering in orderings:
+                pixels[ordering[i]] = colours[i]
 
         pixels.write()
-        offset += 1
+        colours = [colours[-1]] + colours[:-1]
 
         time.sleep_ms(sleep_time)

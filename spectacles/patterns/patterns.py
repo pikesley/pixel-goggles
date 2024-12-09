@@ -1,8 +1,8 @@
-from patterns.spinner import spinner
+from patterns.rainbow import rainbow
 
 patterns = [
-    spinner,
-    # rainbow,
+    # spinner,
+    rainbow,
     #     wave,
     #     chaser,
     #     spinner,
