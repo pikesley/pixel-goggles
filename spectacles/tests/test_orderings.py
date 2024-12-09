@@ -1,4 +1,4 @@
-from lib.orderings import get_ordering, get_prime
+from lib.orderings import get_ordering, get_pairs, get_prime
 
 
 def test_get_ordering():
@@ -167,3 +167,18 @@ def test_get_prime():
     assert get_prime("right", "sw") == 0
 
     assert get_prime("left", "ese") == 17  # noqa: PLR2004
+
+
+def test_get_pairs():
+    """Test we get pairs."""
+    assert get_pairs("right", "s") == [
+        (2,),
+        (1, 3),
+        (0, 4),
+        (15, 5),
+        (14, 6),
+        (13, 7),
+        (12, 8),
+        (11, 9),
+        (10,),
+    ]

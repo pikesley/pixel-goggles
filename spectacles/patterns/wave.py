@@ -1,32 +1,27 @@
 import time
 
 from lib.colour_tools import rgb_from_hue, scale_colour
-from lib.context import brightness, hue_source, length, pixels
-from lib.indexing_tools import index_pairs
+from lib.context import brightness, hue_source, pixels
+from lib.orderings import get_pairs
 
 
 def wave():
     """Waves of colour."""
-    sleep_time = 40
-    offset = 0
+    sleep_time = 10
+    tail = 8
+    sequence = get_pairs("left", "w") + get_pairs("right", "w")
 
-    pairs = index_pairs(length, offset)
+    values = [0] * len(sequence)
 
-    count = 0
+    for t in range(tail):
+        values[t - 1] = 1 / (2 ** t)
+
     while True:
-        colour_source = rgb_from_hue(hue_source.hue())
-
-        colour = colour_source["bytes"]
-        if count == 1:
-            colour = colour_source["inverse"]
-
-        scaled_colour = scale_colour(colour, brightness)
-
-        for pair in pairs:
-            for item in pair:
-                pixels[item] = scaled_colour
+        colour = rgb_from_hue(hue_source.hue())["bytes"]
+        for index, value in enumerate(values):
+            for member in sequence[index]:
+                pixels[member] = scale_colour(colour, value)
 
             pixels.write()
-            time.sleep_ms(sleep_time)
-
-        count = (count + 1) % 2
+        values = [values[-1]] + values[:-1]
+        time.sleep_ms(sleep_time)

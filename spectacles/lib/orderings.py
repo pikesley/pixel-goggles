@@ -31,7 +31,7 @@ def get_prime(side, start):
     return int(prime)
 
 
-def get_ordering(side, start, direction, overlap=False):  # noqa: FBT002
+def get_ordering(side, start, direction="clockwise", overlap=False):  # noqa: FBT002
     """Calculate an ordering."""
     offset = 0
     if side == "left":
@@ -52,3 +52,20 @@ def get_ordering(side, start, direction, overlap=False):  # noqa: FBT002
         result += [result[0]]
 
     return result
+
+
+def get_pairs(side, start):
+    """Get pairs across the ring."""
+    ordering = get_ordering(side, start)
+    chunk_size = int((ring_size / 2) - 1)
+    first_chunk = ordering[1 : chunk_size + 1]
+    second_chunk = list(reversed(ordering[chunk_size + 2 :]))
+
+    pairs = [(ordering[0],)]
+
+    for i in range(chunk_size):
+        pairs.append((first_chunk[i], second_chunk[i]))  # noqa: PERF401
+
+    pairs.append((ordering[chunk_size + 1],))
+
+    return pairs
