@@ -5,10 +5,10 @@ from lib.context import pixels
 from lib.orderings import get_ordering
 
 
-def spinner():
+def snake():
     """Spin the wheel."""
     sleep_time = 40
-    tail = 8
+    tail = 10
 
     left = get_ordering("left", "e", "clockwise", overlap=True)
     right = get_ordering("right", "w", "anticlockwise", overlap=True)

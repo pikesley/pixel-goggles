@@ -3,6 +3,7 @@ import time
 from lib.colour_tools import scale_colour, spectrum
 from lib.context import brightness, pixels
 from lib.orderings import get_ordering
+from lib.tools import rotate_list
 
 
 def rainbow():
@@ -22,6 +23,6 @@ def rainbow():
                 pixels[ordering[i]] = scale_colour(colours[i], brightness)
 
         pixels.write()
-        colours = [colours[-1]] + colours[:-1]
+        colours = rotate_list(colours, direction="l")
 
         time.sleep_ms(sleep_time)
