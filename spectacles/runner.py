@@ -1,5 +1,5 @@
 from lib.pattern_index_manager import manage_index
-from patterns.patterns import patterns
+from patterns_list import patterns
 
 
 def run():

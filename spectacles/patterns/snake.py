@@ -1,29 +1,29 @@
 import time
 
-from lib.colour_tools import just_an_rgb, scale_colour
+from lib.colour_tools import scale_colour, spectrum
 from lib.context import pixels
 from lib.orderings import get_ordering
+from lib.tools import inverse_square_tail
 
 
 def snake():
     """Spin the wheel."""
     sleep_time = 40
-    tail = 10
+    colours_offset = 4
 
     left = get_ordering("left", "e", "clockwise", overlap=True)
     right = get_ordering("right", "w", "anticlockwise", overlap=True)
     sequence = left + right
 
+    values = inverse_square_tail(len(sequence), backwards=True)
+    colours = spectrum(len(sequence) + colours_offset)
+
     while True:
         for i in range(len(sequence)):
-            colour = just_an_rgb()
+            pixels[sequence[i]] = scale_colour(colours[i], values[i])
 
-            for t in range(tail):
-                pixels[sequence[(i - t)] % len(sequence)] = scale_colour(
-                    colour, 1 / (t + 1)
-                )
+        colours.rotate(direction="r")
+        values.rotate()
 
-            pixels[sequence[(i - t)] % len(sequence)] = (0, 0, 0)
-
-            pixels.write()
-            time.sleep_ms(sleep_time)
+        pixels.write()
+        time.sleep_ms(sleep_time)

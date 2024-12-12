@@ -3,14 +3,15 @@ import time
 from lib.colour_tools import just_an_rgb, scale_colour
 from lib.context import pixels
 from lib.orderings import get_pairs
-from lib.tools import colour_pair, inverse_square_tail, rotate_list
+from lib.tools import colour_pair, get_intervals, inverse_square_tail
 
 
 def wave():
     """Waves of colour."""
-    sleep_time = 10
+    sleep_multiplier = 100
     sequence = get_pairs("left", "w") + get_pairs("right", "w")
     values = inverse_square_tail(len(sequence))
+    intervals = get_intervals(sleep_multiplier)
 
     while True:
         colour = just_an_rgb()
@@ -19,5 +20,6 @@ def wave():
 
             pixels.write()
 
-        values = rotate_list(values, direction="l")
-        time.sleep_ms(sleep_time)
+        values.rotate()
+        intervals.rotate(direction="r")
+        time.sleep_ms(intervals.head)

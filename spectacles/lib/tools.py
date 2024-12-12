@@ -1,16 +1,24 @@
+from math import cos, radians
+
 from lib.colour_tools import just_an_rgb
+from lib.rotatable_list import RotatableList
 
 
-def rotate_list(start_list, direction="l", steps=1):
-    """Rotate a list, a la `deque`."""
-    if direction == "l":
-        for _ in range(steps):
-            start_list = start_list[1:] + [start_list[0]]
-        return start_list
+def get_intervals(multiplier):
+    """Get the timing intervals."""
+    timing_intervals = [
+        0,
+        0.03806,
+        0.10839,
+        0.16221,
+        0.19134,
+        0.19134,
+        0.16221,
+        0.10839,
+        0.03806,
+    ]
 
-    for _ in range(steps):
-        start_list = [start_list[-1]] + start_list[:-1]
-    return start_list
+    return RotatableList([int(t * multiplier) for t in timing_intervals])
 
 
 def colour_pair(pixels, pair, colour=None):
@@ -28,4 +36,9 @@ def inverse_square_tail(length, coefficient=1, backwards=False):  # noqa: FBT002
     if backwards:
         values.reverse()
 
-    return values
+    return RotatableList(values)
+
+
+def cos_curve(divider):
+    """Get `cos` intervals."""
+    return RotatableList([(cos(radians(t)) + 1) / divider for t in range(360)])

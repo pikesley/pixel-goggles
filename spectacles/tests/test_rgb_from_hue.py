@@ -1,8 +1,4 @@
-from lib.colour_tools import (
-    get_sector,
-    get_segments,
-    rgb_from_hue,
-)
+from lib.colour_tools import get_sector, get_segments, rgb_from_degrees, rgb_from_hue
 
 
 def test_get_sector():
@@ -22,7 +18,7 @@ def test_rgb_from_hue():
     )
 
     for expectation in expectations:
-        assert rgb_from_hue(expectation[0])["bytes"] == expectation[1]
+        assert rgb_from_hue(expectation[0], brightness=1.0)["bytes"] == expectation[1]
 
 
 def test_get_segments():
@@ -35,3 +31,16 @@ def test_get_segments():
         {"offset": 240, "blue": 1, "green": 0},
         {"offset": 300, "red": 1, "green": 0},
     ]
+
+
+def test_rgb_from_degrees():
+    """Test we get the RGBs."""
+    assert rgb_from_degrees(0, brightness=1.0) == {
+        "bytes": (255, 0, 0),
+        "inverse": (0, 255, 255),
+    }
+
+    assert rgb_from_degrees(0, brightness=0.5) == {
+        "bytes": (127, 0, 0),
+        "inverse": (0, 127, 127),
+    }

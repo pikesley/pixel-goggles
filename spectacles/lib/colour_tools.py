@@ -1,6 +1,8 @@
+import time
 from math import floor
 
-from lib.context import brightness, hue_source
+from lib.context import defaults
+from lib.rotatable_list import RotatableList
 
 
 def get_segments():
@@ -29,8 +31,11 @@ def get_sector(degrees):
     return int(floor(degrees / 60))
 
 
-def rgb_from_degrees(degrees):
+def rgb_from_degrees(degrees, brightness=None):
     """Get RGB from degrees of rotation."""
+    if not brightness:
+        brightness = defaults["brightness"]
+
     sector = get_sector(degrees % 360)
     segment = segments[sector]
     offset = (1 / 60) * (degrees - segment["offset"])
@@ -39,15 +44,16 @@ def rgb_from_degrees(degrees):
         offset = 1 - offset
 
     rgb = [segment.get(x, offset) for x in ["red", "green", "blue"]]
+
     return {
-        "bytes": tuple([int(x * 255) for x in rgb]),
-        "inverse": tuple([255 - int(x * 255) for x in rgb]),
+        "bytes": tuple([int(x * 255 * brightness) for x in rgb]),
+        "inverse": tuple([int((255 - (x * 255)) * brightness) for x in rgb]),
     }
 
 
-def rgb_from_hue(decimal):
+def rgb_from_hue(decimal, brightness=None):
     """Get RGB from hue value (0.0 - 1.0)."""
-    return rgb_from_degrees((decimal % 1.0) * 360)
+    return rgb_from_degrees((decimal % 1.0) * 360, brightness=brightness)
 
 
 def scale_colour(rgb, factor):
@@ -55,17 +61,28 @@ def scale_colour(rgb, factor):
     return [int(component * factor) for component in rgb]
 
 
-def scaled_rgb():
-    """Just generate a time-based, scaled colour."""
-    return scale_colour(just_an_rgb(), brightness)
-
-
 def just_an_rgb():
     """Just generate a time-based colour."""
-    return rgb_from_hue(hue_source.hue())["bytes"]
+    return rgb_from_hue(time_based_hue())["bytes"]
 
 
 def spectrum(length):
     """Generate a spectrum."""
     interval = 360 / length
-    return [rgb_from_degrees(i * interval)["bytes"] for i in range(length)]
+    return RotatableList(
+        [rgb_from_degrees(i * interval)["bytes"] for i in range(length)]
+    )
+
+
+def time_based_hue(seconds_per_rotation=None):
+    """Time-based hue."""
+    if not seconds_per_rotation:
+        seconds_per_rotation = defaults["seconds-per-hue-rotation"]
+
+    now = time.time()
+    return (now % seconds_per_rotation) / seconds_per_rotation
+
+
+def time_based_rgb(seconds_per_rotation=None):
+    """Time-based RGB."""
+    return rgb_from_hue(time_based_hue(seconds_per_rotation=seconds_per_rotation))

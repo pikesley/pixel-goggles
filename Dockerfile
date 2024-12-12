@@ -10,7 +10,3 @@ RUN python -m pip install --upgrade pip
 RUN python -m pip install -r requirements.txt
 
 COPY ./ ${WORKDIR}
-
-# COPY ./docker-config/entrypoint.sh /usr/local/bin/entrypoint
-# RUN chmod +x /usr/local/bin/entrypoint
-# ENTRYPOINT ["/usr/local/bin/entrypoint"]

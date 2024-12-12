@@ -1,18 +1,9 @@
-from lib.tools import inverse_square_tail, rotate_list
-
-
-def test_rotate_list():
-    """Test we can rotate."""
-    example = [5, 3, 7, 8, 1, 10]
-
-    assert rotate_list(example) == [3, 7, 8, 1, 10, 5]
-    assert rotate_list(example, direction="r") == [10, 5, 3, 7, 8, 1]
-    assert rotate_list(example, steps=2) == [7, 8, 1, 10, 5, 3]
+from lib.tools import inverse_square_tail
 
 
 def test_inverse_square_tail():
     """Test the tail."""
-    assert inverse_square_tail(8) == [
+    assert inverse_square_tail(8).items == [
         1.0,
         0.5,
         0.25,
@@ -22,10 +13,10 @@ def test_inverse_square_tail():
         0.015625,
         0.0078125,
     ]
-    assert inverse_square_tail(4, backwards=True) == [0.125, 0.25, 0.5, 1.0]
-    assert inverse_square_tail(3) == [1.0, 0.5, 0.25]
+    assert inverse_square_tail(4, backwards=True).items == [0.125, 0.25, 0.5, 1.0]
+    assert inverse_square_tail(3).items == [1.0, 0.5, 0.25]
 
-    assert inverse_square_tail(8, coefficient=0.5) == [
+    assert inverse_square_tail(8, coefficient=0.5).items == [
         1.0,
         0.7071067811865475,
         0.5,
