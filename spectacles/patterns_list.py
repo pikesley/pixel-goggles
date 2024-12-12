@@ -6,10 +6,10 @@ from patterns.spots import spots
 from patterns.wave import wave
 
 patterns = [
-    spots,
+    wave,
+    rainbow,
     snake,
     race,
     pulse,
-    rainbow,
-    wave,
+    spots,
 ]
