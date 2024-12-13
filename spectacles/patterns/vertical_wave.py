@@ -6,19 +6,23 @@ from lib.orderings import get_pairs
 from lib.tools import colour_pair, get_intervals, inverse_square_tail
 
 
-def wave():
+def vertical_wave():
     """Waves of colour."""
-    sleep_multiplier = 50
-    sequence = get_pairs("left", "w") + get_pairs("right", "w")
-    values = inverse_square_tail(len(sequence))
+    sleep_multiplier = 100
+
+    left = get_pairs("left", "wsw")
+    right = get_pairs("right", "ese")
+
+    values = inverse_square_tail(len(left) * 3)
     intervals = get_intervals(sleep_multiplier)
 
     while True:
         colour = just_an_rgb()
         for index, value in enumerate(values):
-            colour_pair(pixels, sequence[index], scale_colour(colour, value))
+            i = index % 9
+            colour_pair(pixels, left[i] + right[i], scale_colour(colour, value))
 
-            pixels.write()
+        pixels.write()
 
         values.rotate()
         intervals.rotate(direction="r")

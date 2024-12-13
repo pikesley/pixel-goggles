@@ -1,4 +1,4 @@
-from lib.tools import inverse_square_tail
+from lib.tools import get_intervals, inverse_square_tail
 
 
 def test_inverse_square_tail():
@@ -25,4 +25,19 @@ def test_inverse_square_tail():
         0.17677669529663687,
         0.125,
         0.08838834764831843,
+    ]
+
+
+def test_get_intervals():
+    """Test intervals."""
+    assert get_intervals(100000).items == [
+        7612,
+        21677,
+        32442,
+        38268,
+        38268,
+        32442,
+        21677,
+        7612,
+        0,
     ]

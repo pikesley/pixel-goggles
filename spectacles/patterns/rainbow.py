@@ -2,7 +2,7 @@ import time
 
 from lib.colour_tools import spectrum
 from lib.context import pixels
-from lib.orderings import get_ordering
+from lib.orderings import get_ordering, random_origin, random_rotation
 
 
 def rainbow():
@@ -10,8 +10,8 @@ def rainbow():
     colours = spectrum(16)
 
     orderings = (
-        get_ordering("left", "n", "clockwise"),
-        get_ordering("right", "n", "clockwise"),
+        get_ordering("left", random_origin(), random_rotation()),
+        get_ordering("right", random_origin(), random_rotation()),
     )
 
     sleep_time = 50

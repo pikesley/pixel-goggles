@@ -2,7 +2,7 @@ import time
 from math import floor
 
 from lib.context import defaults
-from lib.rotatable_list import RotatableList
+from lib.fancy_list import FancyList
 
 
 def get_segments():
@@ -69,9 +69,7 @@ def just_an_rgb():
 def spectrum(length):
     """Generate a spectrum."""
     interval = 360 / length
-    return RotatableList(
-        [rgb_from_degrees(i * interval)["bytes"] for i in range(length)]
-    )
+    return FancyList([rgb_from_degrees(i * interval)["bytes"] for i in range(length)])
 
 
 def time_based_hue(seconds_per_rotation=None):

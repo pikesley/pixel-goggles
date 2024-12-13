@@ -1,28 +1,48 @@
+from random import randint
+
 ring_size = 16
 tops = {"right": 10, "left": 22}
 
 
+offsets = {
+    "n": 0,
+    "nnw": 1,
+    "nw": 2,
+    "wnw": 3,
+    "w": 4,
+    "wsw": 5,
+    "sw": 6,
+    "ssw": 7,
+    "s": 8,
+    "sse": 9,
+    "se": 10,
+    "ese": 11,
+    "e": 12,
+    "ene": 13,
+    "ne": 14,
+    "nne": 15,
+}
+
+# FancyList?
+compass_points = list(offsets.keys())
+
+
+def random_origin():
+    """Get a random compass point."""
+    return compass_points[randint(0, len(compass_points) - 1)]  # noqa: S311
+
+
+def random_rotation():
+    """Get a random rotation direction."""
+    rotation = "clockwise"
+    if randint(0, 1) == 0:  # noqa: S311
+        rotation = f"anti{rotation}"
+
+    return rotation
+
+
 def get_prime(side, start):
     """Work out the prime position."""
-    offsets = {
-        "n": 0,
-        "nnw": 1,
-        "nw": 2,
-        "wnw": 3,
-        "w": 4,
-        "wsw": 5,
-        "sw": 6,
-        "ssw": 7,
-        "s": 8,
-        "sse": 9,
-        "se": 10,
-        "ese": 11,
-        "e": 12,
-        "ene": 13,
-        "ne": 14,
-        "nne": 15,
-    }
-
     prime = (tops[side] + offsets[start]) % ring_size
 
     if side == "left":

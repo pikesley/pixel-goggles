@@ -1,8 +1,8 @@
 default: format test clean
 
 push:
-	$(shell echo 0 > /tmp/pattern-index)
-	python -m mpremote cp /tmp/pattern-index :
+	$(shell echo '{"pattern-index": 0}' > /tmp/state.json)
+	python -m mpremote cp /tmp/state.json :
 	python -m mpremote cp -r *py :
 	python -m mpremote cp -r lib :
 	python -m mpremote cp -r patterns :

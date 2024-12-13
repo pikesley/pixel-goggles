@@ -1,5 +1,5 @@
-class RotatableList:
-    """Rotatable list."""
+class FancyList:
+    """List with extra steps."""
 
     def __init__(self, items):
         """Construct."""
@@ -31,3 +31,15 @@ class RotatableList:
         else:
             for _ in range(steps):
                 self.items = [self.items[-1]] + self.items[:-1]
+
+    def trim(self, end="front"):
+        """Trim an item."""
+        if end == "front":
+            self.items = self.items[1:]
+
+        else:
+            self.items = self.items[:-1]
+
+    def empty(self):
+        """Are we out of items."""
+        return self.items == []

@@ -1,24 +1,19 @@
 from math import cos, radians
 
 from lib.colour_tools import just_an_rgb
-from lib.rotatable_list import RotatableList
+from lib.fancy_list import FancyList
 
 
 def get_intervals(multiplier):
     """Get the timing intervals."""
-    timing_intervals = [
-        0,
-        0.03806,
-        0.10839,
-        0.16221,
-        0.19134,
-        0.19134,
-        0.16221,
-        0.10839,
-        0.03806,
+    cosines = [1 - cos(radians((i / 4) * 90)) for i in range(5)]
+    intervals = [
+        cosines[index + 1] - cosines[index] for index in range(len(cosines) - 1)
     ]
+    intervals += list(reversed(intervals))
+    intervals += [0]
 
-    return RotatableList([int(t * multiplier) for t in timing_intervals])
+    return FancyList([int(t * multiplier) for t in intervals])
 
 
 def colour_pair(pixels, pair, colour=None):
@@ -36,9 +31,9 @@ def inverse_square_tail(length, coefficient=1, backwards=False):  # noqa: FBT002
     if backwards:
         values.reverse()
 
-    return RotatableList(values)
+    return FancyList(values)
 
 
 def cos_curve(divider):
     """Get `cos` intervals."""
-    return RotatableList([(cos(radians(t)) + 1) / divider for t in range(360)])
+    return FancyList([(cos(radians(t)) + 1) / divider for t in range(360)])
