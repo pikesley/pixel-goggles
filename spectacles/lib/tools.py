@@ -1,4 +1,4 @@
-from math import cos, radians
+from math import cos, pi, radians, sin
 
 from lib.colour_tools import just_an_rgb
 from lib.fancy_list import FancyList
@@ -48,3 +48,7 @@ def off(pixels, write=False):  # noqa: FBT002
         pixels.write()
 
 
+def pendulum_timings():
+    """Get the pendulum timings."""
+    timings = [sin((i * pi) / 32) for i in range(1, 16, 2)]
+    return list(reversed(timings)) + timings

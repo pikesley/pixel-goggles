@@ -1,4 +1,6 @@
-from lib.tools import get_intervals, inverse_square_tail
+from math import isclose
+
+from lib.tools import get_intervals, inverse_square_tail, pendulum_timings
 
 
 def test_inverse_square_tail():
@@ -41,3 +43,29 @@ def test_get_intervals():
         7612,
         0,
     ]
+
+
+def test_pendulum_timings():
+    """Test the pendulum timings."""
+    expected = [
+        0.9951847266721968,
+        0.9569403357322089,
+        0.881921264348355,
+        0.7730104533627371,
+        0.6343932841636455,
+        0.47139673682599786,
+        0.2902846772544624,
+        0.09801714032956083,
+        0.09801714032956083,
+        0.2902846772544624,
+        0.47139673682599786,
+        0.6343932841636455,
+        0.7730104533627371,
+        0.881921264348355,
+        0.9569403357322089,
+        0.9951847266721968,
+    ]
+    actual = pendulum_timings()
+
+    for i in range(len(actual)):
+        assert isclose(actual[i], expected[i])
