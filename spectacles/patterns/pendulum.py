@@ -31,19 +31,17 @@ def pendulum():
 
         for t in range(tail_count):
             tail_index = i - t
-            print(left[tail_index])
-            pixels[left[tail_index]] = scale_colour(colour, tail[t])
-
-        print("*" * 80)
+            for eye in [left, right]:
+                pixels[eye[tail_index]] = scale_colour(colour, tail[t])
 
         pixels.write()
         interval = int(timings[i] * timing_scale)
         time.sleep_ms(interval)
 
     while tail_count:
-        victim_index = left[0 - (tail_count)]
-        print(f"turning off {victim_index}")
-        pixels[victim_index] = (0, 0, 0)
+        for eye in [left, right]:
+            victim_index = eye[0 - (tail_count)]
+            pixels[victim_index] = (0, 0, 0)
         pixels.write()
         tail_count -= 1
         time.sleep_ms(timing_scale)
