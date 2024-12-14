@@ -12,6 +12,7 @@ def pendulum():
     timing_scale = 70
 
     tail_length = 8
+    tail_off_factor = 2
 
     left = get_ordering("left", "n", "clockwise", overlap=True)[offset:-offset]
     right = get_ordering("right", "n", "clockwise", overlap=True)[offset:-offset]
@@ -21,6 +22,7 @@ def pendulum():
 
     while True:
         tail_count = 0
+        time.sleep_ms(timing_scale)
         for i in range(len(left)):
             off(pixels)
             colour = just_an_rgb()
@@ -43,9 +45,10 @@ def pendulum():
                 pixels[victim_index] = (0, 0, 0)
             pixels.write()
             tail_count -= 1
-            time.sleep_ms(int(timing_scale / 20))
+            time.sleep_ms(int(timing_scale / tail_off_factor))
 
         tail_count = 0
+        time.sleep_ms(timing_scale)
         for i in range(len(left) - 1, -1, -1):
             off(pixels)
             colour = just_an_rgb()
@@ -68,4 +71,4 @@ def pendulum():
                 pixels[victim_index] = (0, 0, 0)
             pixels.write()
             tail_count -= 1
-            time.sleep_ms(int(timing_scale / 20))
+            time.sleep_ms(int(timing_scale / tail_off_factor))
