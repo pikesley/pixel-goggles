@@ -24,6 +24,7 @@ def pendulum():
         roll()
         roll(direction="anti-clockwise")
 
+
 def roll(direction="clockwise"):
     """Roll around."""
     full_range = range(len(left))
@@ -45,6 +46,7 @@ def roll(direction="clockwise"):
 
     erase_tail(direction=direction)
 
+
 def paint_tail(index, count, direction):
     """Paint the tail."""
     colour = just_an_rgb()
@@ -59,17 +61,18 @@ def paint_tail(index, count, direction):
 
     pixels.write()
 
+
 def erase_tail(direction):
     """Clean up the tail."""
     tail_count = tail_length
-    while tail_count > 2:
+    while tail_count > 1:
         for eye in [left, right]:
-
             victim_index = eye[0 - (tail_count)]
             if "anti" in direction:
                 victim_index = eye[tail_count - 1]
 
             pixels[victim_index] = (0, 0, 0)
+
         pixels.write()
         tail_count -= 1
         time.sleep_ms(int(timing_scale / tail_off_factor))
