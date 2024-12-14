@@ -6,12 +6,12 @@ from lib.orderings import get_pairs
 from lib.tools import colour_pair, get_intervals, inverse_square_tail
 
 
-def vertical_wave():
+def flying_wave():
     """Waves of colour."""
     sleep_multiplier = 100
 
-    left = get_pairs("left", "wsw")
-    right = get_pairs("right", "ese")
+    left = get_pairs("left", "wnw")
+    right = get_pairs("right", "ene")
 
     values = inverse_square_tail(len(left) * 3)
     intervals = get_intervals(sleep_multiplier)

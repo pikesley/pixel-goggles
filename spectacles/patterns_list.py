@@ -1,14 +1,14 @@
+from patterns.flying_wave import flying_wave
 from patterns.pulse import pulse
 from patterns.race import race
 from patterns.rainbow import rainbow
 from patterns.snake import snake
 from patterns.sparkle import sparkle
 from patterns.spots import spots
-from patterns.vertical_wave import vertical_wave
 from patterns.wave import wave
 
 patterns = [
-    vertical_wave,
+    flying_wave,
     rainbow,
     wave,
     sparkle,

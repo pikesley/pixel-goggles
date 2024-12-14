@@ -1,7 +1,7 @@
 from random import randint
 
 ring_size = 16
-tops = {"right": 10, "left": 22}
+tops = {"left": 2, "right": 30}
 
 
 offsets = {
@@ -45,7 +45,7 @@ def get_prime(side, start):
     """Work out the prime position."""
     prime = (tops[side] + offsets[start]) % ring_size
 
-    if side == "left":
+    if side == "right":
         prime += ring_size
 
     return int(prime)
@@ -54,7 +54,7 @@ def get_prime(side, start):
 def get_ordering(side, start, direction="clockwise", overlap=False):  # noqa: FBT002
     """Calculate an ordering."""
     offset = 0
-    if side == "left":
+    if side == "right":
         offset = ring_size
 
     prime = get_prime(side, start)

@@ -37,3 +37,14 @@ def inverse_square_tail(length, coefficient=1, backwards=False):  # noqa: FBT002
 def cos_curve(divider):
     """Get `cos` intervals."""
     return FancyList([(cos(radians(t)) + 1) / divider for t in range(360)])
+
+
+def off(pixels, write=False):  # noqa: FBT002
+    """Turn them all off."""
+    for i in range(len(pixels)):
+        pixels[i] = (0, 0, 0)
+
+    if write:
+        pixels.write()
+
+
