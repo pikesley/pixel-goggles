@@ -36,6 +36,10 @@ class Eye:
         """Get an iterator."""
         return SingleIterator(self, start_point, direction)
 
+    def pairwise_iterator(self, start_point="n"):
+        """Get a pairwise iterator."""
+        return PairwiseIterator(self, start_point)
+
 
 class SingleIterator:
     """Iterate single indeces."""
@@ -71,6 +75,38 @@ class SingleIterator:
 
         self.index += 1
         return item
+
+
+class PairwiseIterator:
+    """Iterate pairs."""
+
+    def __init__(self, eye, start_point="n"):
+        """Construct."""
+        self.eye = eye
+        self.start_point = start_point
+
+        self.get_indeces()
+        self.index = 0
+
+    def get_indeces(self):
+        """Get our index pairs."""
+        # this is common
+        points = FancyList(compass_points)
+        points.rotate(steps=points.index(self.start_point))
+
+        chunk_size = int((self.eye.leds / 2) - 1)
+        first_chunk = points.items[1 : chunk_size + 1]
+        second_chunk = list(reversed(points.items[chunk_size + 2 :]))
+
+        temp_list = [(points[0],)]
+        for i in range(chunk_size):
+            temp_list.append((first_chunk[i], second_chunk[i]))  # noqa: PERF401
+
+        temp_list.append((points[chunk_size + 1],))
+
+        self.pairs = [
+            tuple([compass_points.index(p) for p in pair]) for pair in temp_list
+        ]
 
 
 norths = {"left": 2, "right": 30}

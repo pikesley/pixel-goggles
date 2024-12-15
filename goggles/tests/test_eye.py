@@ -1,6 +1,6 @@
 from helpers.fake_pixels import FakePixels
 
-from lib.eye import Eye, SingleIterator
+from lib.eye import Eye, PairwiseIterator, SingleIterator
 
 
 def test_remapping():
@@ -91,3 +91,22 @@ def test_iterator():
         results.append(next(iterator))  # noqa: PERF401
 
     assert results == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+
+
+def test_pairwise_iterator():
+    """Test the pairwise-iterator."""
+    pixels = FakePixels()
+    eye = Eye(pixels, "left")
+
+    iterator = PairwiseIterator(eye, "n")
+    assert iterator.pairs == [
+        (0,),
+        (1, 15),
+        (2, 14),
+        (3, 13),
+        (4, 12),
+        (5, 11),
+        (6, 10),
+        (7, 9),
+        (8,),
+    ]
