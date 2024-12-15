@@ -13,3 +13,10 @@ if os.uname().sysname == "esp32":
     length = len(pixels)
 
     on_board = machine.Pin(8, machine.Pin.OUT)
+
+    from lib.eye import Eye
+
+    eyes = {
+        "left": Eye(pixels, "left"),
+        "right": Eye(pixels, "right"),
+    }

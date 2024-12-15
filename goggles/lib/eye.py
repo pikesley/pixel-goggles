@@ -8,13 +8,19 @@ class Eye:
         self.north_index = norths[side]
         self.leds = leds
 
+        self.offset = 0
+        if self.side == "right":
+            self.offset = self.leds
+
     def __setitem__(self, index, colour):
         """Colour a pixel."""
-        self.pixels[(index + self.north_index) % self.leds] = colour
+        self.pixels[((index + self.north_index) % self.leds) + self.offset] = colour
 
     def colour_point(self, point, colour):
         """Colour the pixel at `point`."""
-        self.pixels[compass_points.index(point)] = colour
+        self.pixels[
+            ((compass_points.index(point) + self.north_index) % 16) + self.offset
+        ] = colour
 
     def fill(self, start_point, colours):
         """Fill ourself with a list of colours."""
