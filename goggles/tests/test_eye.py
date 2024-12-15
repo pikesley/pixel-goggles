@@ -31,10 +31,10 @@ def test_fill():
     pixels = FakePixels()
 
     left_eye = Eye(pixels, "left")
-    left_eye.fill("n", list(range(0, 16, 1)))
+    left_eye.fill(list(range(0, 16, 1)))
 
     right_eye = Eye(pixels, "right")
-    right_eye.fill("n", list(range(100, 116, 1)))
+    right_eye.fill(list(range(100, 116, 1)), "n")
 
     assert pixels == [
         14,

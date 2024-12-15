@@ -22,7 +22,7 @@ class Eye:
             ((compass_points.index(point) + self.north_index) % 16) + self.offset
         ] = colour
 
-    def fill(self, start_point, colours):
+    def fill(self, colours, start_point="n"):
         """Fill ourself with a list of colours."""
         start_index = compass_points.index(start_point)
 
