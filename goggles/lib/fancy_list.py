@@ -43,3 +43,7 @@ class FancyList:
     def empty(self):
         """Are we out of items."""
         return self.items == []
+
+    def index(self, item):
+        """Get the index of `item`."""
+        return self.items.index(item)

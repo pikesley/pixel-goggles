@@ -1,6 +1,6 @@
 from helpers.fake_pixels import FakePixels
 
-from lib.eye import Eye
+from lib.eye import Eye, SingleIterator
 
 
 def test_remapping():
@@ -70,3 +70,24 @@ def test_fill():
         100,
         101,
     ]
+
+
+def test_iterator():
+    """Test the iterator."""
+    pixels = FakePixels()
+    eye = Eye(pixels, "left")
+
+    iterator = SingleIterator(eye, "e")
+    assert iterator.indeces == [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 15, 14, 13]
+
+    iterator = SingleIterator(eye, "w")
+    assert iterator.indeces == [4, 3, 2, 1, 0, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5]
+
+    iterator = SingleIterator(eye, "n", "anticlockwise")
+    assert iterator.indeces == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+
+    results = []
+    for _ in range(16):
+        results.append(next(iterator))  # noqa: PERF401
+
+    assert results == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]

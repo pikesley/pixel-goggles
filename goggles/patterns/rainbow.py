@@ -11,7 +11,7 @@ def rainbow():
 
     while True:
         for eye in eyes.values():
-            eye.fill("n", colours)
+            eye.fill(colours)
 
         pixels.write()
         colours.rotate()
