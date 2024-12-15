@@ -1,6 +1,3 @@
-from collections import OrderedDict
-
-
 class Eye:
     """One eye of a goggle."""
 
@@ -11,25 +8,20 @@ class Eye:
         self.north_index = north_index
         self.leds = leds
 
-        self.assign_compass()
-
-    def assign_compass(self):
-        """Assign compass points."""
-        offset = 0
-        if self.side == "right":
-            offset = self.leds
-
-        self.compass = OrderedDict()
-        for index, point in enumerate(compass_points):
-            self.compass[point] = ((index + self.north_index) % self.leds) + offset
-
     def __setitem__(self, index, colour):
         """Colour a pixel."""
         self.pixels[(index + self.north_index) % self.leds] = colour
 
     def colour_point(self, point, colour):
         """Colour the pixel at `point`."""
-        self.pixels[self.compass[point]] = colour
+        self.pixels[compass_points.index(point)] = colour
+
+    def fill(self, start_point, colours):
+        """Fill ourself with a list of colours."""
+        start_index = compass_points.index(start_point)
+
+        for index in range(self.leds):
+            self[index + start_index] = colours[index]
 
 
 compass_points = [
