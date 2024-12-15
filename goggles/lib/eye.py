@@ -1,11 +1,11 @@
 class Eye:
     """One eye of a goggle."""
 
-    def __init__(self, pixels, side, north_index, leds=16):
+    def __init__(self, pixels, side, leds=16):
         """Construct."""
         self.pixels = pixels
         self.side = side
-        self.north_index = north_index
+        self.north_index = norths[side]
         self.leds = leds
 
     def __setitem__(self, index, colour):
@@ -23,6 +23,8 @@ class Eye:
         for index in range(self.leds):
             self[index + start_index] = colours[index]
 
+
+norths = {"left": 2, "right": 30}
 
 compass_points = [
     "n",
