@@ -15,19 +15,21 @@ class Eye:
 
     def assign_compass(self):
         """Assign compass points."""
+        offset = 0
+        if self.side == "right":
+            offset = self.leds
+
         self.compass = OrderedDict()
         for index, point in enumerate(compass_points):
-            self.compass[point] = (index + self.north_index) % self.leds
+            self.compass[point] = ((index + self.north_index) % self.leds) + offset
 
+    def __setitem__(self, index, colour):
+        """Colour a pixel."""
+        self.pixels[(index + self.north_index) % self.leds] = colour
 
-class FakePixels(list):
-    """Fake NeoPixels for testing."""
-
-    def __init__(self, length=16):
-        """Construct."""
-        self.length = length
-        for _ in range(self.length):
-            self.append((0, 0, 0))
+    def colour_point(self, point, colour):
+        """Colour the pixel at `point`."""
+        self.pixels[self.compass[point]] = colour
 
 
 compass_points = [
