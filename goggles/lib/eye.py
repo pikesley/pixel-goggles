@@ -32,6 +32,10 @@ class Eye:
         for index in range(self.leds):
             self[index + start_index] = colours[index]
 
+    def iterator(self, start_point="n", direction="clockwise"):
+        """Get an iterator."""
+        return SingleIterator(self, start_point, direction)
+
 
 class SingleIterator:
     """Iterate single indeces."""
