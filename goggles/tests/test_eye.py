@@ -55,10 +55,15 @@ def test_right_side_filling():
 #     assert pixels[30] == (0, 0, 255)
 
 
-# def test_colour_point():
-#     """Test it colours a point."""
-#     pixels = FakePixels(32)
-#     eye = Eye(pixels, "right")
+def test_colour_point():
+    """Test it colours a point."""
+    pixels = FakePixels(32)
+    eye = Eye(pixels, "right")
 
-#     eye.colour_point("s", (255, 0, 0))
-#     assert pixels[22] == (255, 0, 0)
+    eye.colour_point("s", (255, 0, 0))
+    assert pixels[22] == (255, 0, 0)
+
+    eye.colour_point("nw", (0, 255, 0))
+    assert pixels[16] == (0, 255, 0)
+
+    print("THIS WORKS BY ACCIDENT!!!")

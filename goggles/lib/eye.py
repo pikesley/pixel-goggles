@@ -1,6 +1,6 @@
 import json
 
-from lib.compass_points import tops
+from lib.compass_points import compass_points, tops
 
 
 class Eye:
@@ -11,12 +11,13 @@ class Eye:
         self.pixels = pixels
         self.side = side
         self.north_index = tops[self.side]
-
-        self.load_ordering("n", "anticlockwise")
+        self.prime_point = "n"
+        self.load_ordering(self.prime_point, "anticlockwise")
 
     # TODO: set prime_point or something?
     def load_ordering(self, point="n", rotation="anticlockwise"):
         """Set our ordering."""
+        self.prime_point = point
         self.ordering = json.load(
             open(f"renders/eyes/{self.side}/{point}/{rotation}.json")  # noqa: SIM115, PTH123
         )
@@ -39,11 +40,10 @@ class Eye:
             else:
                 self.pixels[item] = colours[index]
 
-    # def colour_point(self, point, colour):
-    #     """Fill `point` with `colour`."""
-    #     import ipdb; ipdb.set_trace()
-    #     print(1)
-    #     index = self
+    def colour_point(self, point, colour):
+        """Fill `point` with `colour`."""
+        index = compass_points.index(self.prime_point) + compass_points.index(point)
+        self.pixels[self.ordering[index]] = colour
 
     def __iter__(self):
         """Be an iterator."""
