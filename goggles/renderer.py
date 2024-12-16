@@ -1,29 +1,10 @@
 import json
 from pathlib import Path
 
+from lib.compass_points import compass_points, tops
 from lib.fancy_list import FancyList
 
 ring_size = 16
-compass_points = [
-    "n",
-    "nnw",
-    "nw",
-    "wnw",
-    "w",
-    "wsw",
-    "sw",
-    "ssw",
-    "s",
-    "sse",
-    "se",
-    "ese",
-    "e",
-    "ene",
-    "ne",
-    "nne",
-]
-
-tops = {"left": 2, "right": 30}
 
 
 def make_left_anticlockwise():
@@ -95,7 +76,7 @@ def make_pairs(singles):
     chunk_size = int((ring_size / 2) - 1)
 
     for key, values in singles.items():
-        ordering = FancyList(values.items)
+        ordering = values.items.copy()
 
         first_chunk = ordering[1 : chunk_size + 1]
         second_chunk = list(reversed(ordering[chunk_size + 2 :]))

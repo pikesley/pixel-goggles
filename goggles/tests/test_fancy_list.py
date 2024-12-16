@@ -27,3 +27,11 @@ def test_trimming():
 
     rl.trim(end="back")
     assert rl.items == ["b"]
+
+
+def test_circularity():
+    """Test it loops forever."""
+    rl = FancyList(["a", "b", "c", "d"])
+
+    assert rl[2] == "c"
+    assert rl[6] == "c"

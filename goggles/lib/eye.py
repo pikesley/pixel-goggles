@@ -1,23 +1,20 @@
 import json
 
+from lib.compass_points import tops
+
 
 class Eye:
     """One eye of a goggle."""
 
-    def __init__(self, pixels, side, leds=16):
+    def __init__(self, pixels, side):
         """Construct."""
         self.pixels = pixels
         self.side = side
-        self.leds = leds
-
-        self.offset = 0
-        if self.side == "right":
-            self.offset = self.leds
+        self.north_index = tops[self.side]
 
         self.load_ordering("n", "anticlockwise")
 
     # TODO: set prime_point or something?
-    # How do we handle pairs?
     def load_ordering(self, point="n", rotation="anticlockwise"):
         """Set our ordering."""
         self.ordering = json.load(
@@ -41,6 +38,12 @@ class Eye:
 
             else:
                 self.pixels[item] = colours[index]
+
+    # def colour_point(self, point, colour):
+    #     """Fill `point` with `colour`."""
+    #     import ipdb; ipdb.set_trace()
+    #     print(1)
+    #     index = self
 
     def __iter__(self):
         """Be an iterator."""

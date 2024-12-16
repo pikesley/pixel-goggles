@@ -7,6 +7,8 @@ class FancyList:
 
     def __getitem__(self, index):
         """`[index]`."""
+        if index > len(self.items) - 1:
+            index = index % len(self)
         return self.items[index]
 
     def __len__(self):
