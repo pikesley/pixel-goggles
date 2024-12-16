@@ -47,3 +47,7 @@ class FancyList:
     def index(self, item):
         """Get the index of `item`."""
         return self.items.index(item)
+
+    def reverse(self):
+        """`reverse()`."""
+        self.items.reverse()

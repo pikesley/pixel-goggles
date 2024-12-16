@@ -68,6 +68,7 @@ def just_an_rgb():
 
 def spectrum(length):
     """Generate a spectrum."""
+    # feels like we're missing some orange
     interval = 360 / length
     return FancyList([rgb_from_degrees(i * interval)["bytes"] for i in range(length)])
 

@@ -15,6 +15,7 @@ def race():
     while True:
         for _ in range(16):
             colour = time_based_rgb()
+            # this is dog-slow
             left_colours = [scale_colour(colour["bytes"], v) for v in values]
             right_colours = [scale_colour(colour["inverse"], v) for v in values]
 

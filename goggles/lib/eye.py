@@ -1,4 +1,4 @@
-from lib.fancy_list import FancyList
+import json
 
 
 class Eye:
@@ -8,124 +8,50 @@ class Eye:
         """Construct."""
         self.pixels = pixels
         self.side = side
-        self.north_index = norths[side]
         self.leds = leds
 
         self.offset = 0
         if self.side == "right":
             self.offset = self.leds
 
+        self.load_ordering("n", "anticlockwise")
+
+    # TODO: set prime_point or something?
+    # How do we handle pairs?
+    def load_ordering(self, point="n", rotation="anticlockwise"):
+        """Set our ordering."""
+        self.ordering = json.load(
+            open(f"renders/eyes/{self.side}/{point}/{rotation}.json")  # noqa: SIM115, PTH123
+        )
+
     def __setitem__(self, index, colour):
         """Colour a pixel."""
-        self.pixels[((index + self.north_index) % self.leds) + self.offset] = colour
+        self.pixels[index] = colour
 
-    def colour_point(self, point, colour):
-        """Colour the pixel at `point`."""
-        self.pixels[
-            ((compass_points.index(point) + self.north_index) % 16) + self.offset
-        ] = colour
+    def __getitem__(self, index):
+        """Get an item."""
+        return self.pixels[index]
 
-    def fill(self, colours, start_point="n"):
+    def fill(self, colours):
         """Fill ourself with a list of colours."""
-        start_index = compass_points.index(start_point)
+        for index, item in enumerate(self.ordering):
+            if isinstance(item, list):
+                for subitem in item:
+                    self.pixels[subitem] = colours[index]
 
-        for index in range(self.leds):
-            self[index + start_index] = colours[index]
-
-    def iterator(self, start_point="n", direction="clockwise"):
-        """Get an iterator."""
-        return SingleIterator(self, start_point, direction)
-
-    def pairwise_iterator(self, start_point="n"):
-        """Get a pairwise iterator."""
-        return PairwiseIterator(self, start_point)
-
-
-class SingleIterator:
-    """Iterate single indeces."""
-
-    def __init__(self, eye, start_point="n", direction="clockwise"):
-        """Construct."""
-        self.eye = eye
-        self.start_point = start_point
-        self.direction = direction
-
-        self.get_indeces()
-        self.index = 0
-
-    def get_indeces(self):
-        """Work out our indeces."""
-        points = FancyList(compass_points)
-        points.rotate(steps=points.index(self.start_point))
-        if self.direction == "clockwise":
-            points.items = [points.items[0]] + list(reversed(points.items[1:]))  # noqa: RUF005
-
-        self.indeces = [compass_points.index(item) for item in points.items]
+            else:
+                self.pixels[item] = colours[index]
 
     def __iter__(self):
-        """Be in iterator."""
+        """Be an iterator."""
+        self.count = 0
         return self
 
     def __next__(self):
-        """Get `next`."""
-        if self.index > len(self.indeces) - 1:
+        """Return our indeces."""
+        if self.count >= len(self.ordering):
             raise StopIteration
 
-        item = self.indeces[self.index]
-
-        self.index += 1
+        item = self.ordering[self.count]
+        self.count += 1
         return item
-
-
-class PairwiseIterator:
-    """Iterate pairs."""
-
-    def __init__(self, eye, start_point="n"):
-        """Construct."""
-        self.eye = eye
-        self.start_point = start_point
-
-        self.get_indeces()
-        self.index = 0
-
-    def get_indeces(self):
-        """Get our index pairs."""
-        # this is common
-        points = FancyList(compass_points)
-        points.rotate(steps=points.index(self.start_point))
-
-        chunk_size = int((self.eye.leds / 2) - 1)
-        first_chunk = points.items[1 : chunk_size + 1]
-        second_chunk = list(reversed(points.items[chunk_size + 2 :]))
-
-        temp_list = [(points[0],)]
-        for i in range(chunk_size):
-            temp_list.append((first_chunk[i], second_chunk[i]))  # noqa: PERF401
-
-        temp_list.append((points[chunk_size + 1],))
-
-        self.pairs = [
-            tuple([compass_points.index(p) for p in pair]) for pair in temp_list
-        ]
-
-
-norths = {"left": 2, "right": 30}
-
-compass_points = [
-    "n",
-    "nnw",
-    "nw",
-    "wnw",
-    "w",
-    "wsw",
-    "sw",
-    "ssw",
-    "s",
-    "sse",
-    "se",
-    "ese",
-    "e",
-    "ene",
-    "ne",
-    "nne",
-]

@@ -9,6 +9,14 @@ push: reset
 	python -m mpremote cp -r lib :
 	python -m mpremote cp -r patterns :
 
+render:
+	rm -fr renders/
+	python renderer.py
+
+.PHONY: renders
+renders:
+	python -m mpremote cp -r renders :
+
 connect:
 	python -m mpremote
 
@@ -45,4 +53,4 @@ flash:
 		0x0 \
 		../firmware/c3-current
 
-reinstall: nuke flash push connect
+reinstall: nuke flash push renders connect

@@ -9,13 +9,13 @@ from patterns.spots import spots
 from patterns.wave import wave
 
 patterns = [
-    pendulum,
-    flying_wave,
+    race,
     rainbow,
     wave,
+    pendulum,
+    flying_wave,
     sparkle,
     spots,
-    race,
     snake,
     pulse,
 ]
