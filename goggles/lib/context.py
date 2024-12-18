@@ -2,6 +2,7 @@ import os
 
 pin = 9
 leds = 32
+ring_size = 16
 
 defaults = {"brightness": 1.0, "seconds-per-hue-rotation": 50}
 

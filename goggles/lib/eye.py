@@ -1,6 +1,7 @@
 import json
 
 from lib.compass_points import compass_points, tops
+from lib.context import ring_size
 from lib.tools import is_single_colour
 
 
@@ -43,7 +44,7 @@ class Eye:
     def fill(self, colours):
         """Fill ourself with a single colour, or list of colours."""
         if is_single_colour(colours):
-            colours = [colours] * 16
+            colours = [colours] * ring_size
 
         for index, item in enumerate(self.ordering):
             if isinstance(item, list):

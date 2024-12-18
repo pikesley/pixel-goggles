@@ -1,6 +1,7 @@
 from random import randint
 
-ring_size = 16
+from lib.context import ring_size
+
 tops = {"left": 2, "right": 30}
 
 

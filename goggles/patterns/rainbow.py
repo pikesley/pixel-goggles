@@ -1,12 +1,12 @@
 import time
 
 from lib.colour_tools import spectrum
-from lib.context import eyes, pixels
+from lib.context import eyes, pixels, ring_size
 
 
 def rainbow():
     """Spin the wheel."""
-    colours = spectrum(16)
+    colours = spectrum(ring_size)
     sleep_time = 30
 
     for eye in eyes.values():

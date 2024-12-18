@@ -2,9 +2,8 @@ import json
 from pathlib import Path
 
 from lib.compass_points import compass_points, tops
+from lib.context import ring_size
 from lib.fancy_list import FancyList
-
-ring_size = 16
 
 
 def make_left_anticlockwise():
