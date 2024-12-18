@@ -1,28 +1,27 @@
 import time
 
 from lib.colour_tools import just_an_rgb, scale_colour
-from lib.context import eyes, pixels
+from lib.context import goggles, pixels
 from lib.tools import get_intervals, inverse_square_tail
 
 
 def wave():
     """Waves of colour."""
-    sleep_multiplier = 50
-    values = inverse_square_tail(32)
+    sleep_multiplier = 150
+    values = inverse_square_tail(27, coefficient=0.5, backwards=True)
     intervals = get_intervals(sleep_multiplier)
+
+    goggles.load_ordering(point="w", rotation="pairs")
 
     while True:
         colour = just_an_rgb()
-        for _index, value in enumerate(values):
-            for eye in eyes.values():
-                for pair in eye.pairwise_iterator("w"):
-                    for p in pair:
-                        eye[p] = scale_colour(colour, value)
+        colours = [scale_colour(colour, v) for v in values.items]
 
-                    # colour_pair(pixels, sequence[index], scale_colour(colour, value))
+        goggles.left.fill(colours)
+        goggles.right.fill(colours[9:])
 
-                    pixels.write()
+        pixels.write()
 
-                    time.sleep_ms(intervals.head)
-                    values.rotate()
-                    intervals.rotate(direction="r")
+        time.sleep_ms(intervals.head)
+        intervals.rotate()
+        values.rotate(direction="r")

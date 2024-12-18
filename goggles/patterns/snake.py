@@ -1,8 +1,7 @@
 import time
 
 from lib.colour_tools import scale_colour, spectrum
-from lib.context import pixels
-from lib.orderings import get_ordering
+from lib.context import goggles, pixels
 from lib.tools import inverse_square_tail
 
 
@@ -11,16 +10,17 @@ def snake():
     sleep_time = 40
     colours_offset = 4
 
-    left = get_ordering("left", "e", "clockwise", overlap=True)
-    right = get_ordering("right", "w", "anticlockwise", overlap=True)
-    sequence = left + right
+    goggles.left.load_ordering(point="e", rotation="clockwise", overlap=True)
+    goggles.right.load_ordering(point="w", rotation="anticlockwise", overlap=True)
 
-    values = inverse_square_tail(len(sequence), backwards=True)
-    colours = spectrum(len(sequence) + colours_offset)
+    ordering = goggles.ordering
+
+    values = inverse_square_tail(len(ordering), backwards=True)
+    colours = spectrum(len(ordering) + colours_offset)
 
     while True:
-        for i in range(len(sequence)):
-            pixels[sequence[i]] = scale_colour(colours[i], values[i])
+        for i in range(len(ordering)):
+            pixels[ordering[i]] = scale_colour(colours[i], values[i])
 
         colours.rotate(direction="r")
         values.rotate()

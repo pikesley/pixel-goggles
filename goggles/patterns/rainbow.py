@@ -7,7 +7,7 @@ from lib.context import eyes, pixels
 def rainbow():
     """Spin the wheel."""
     colours = spectrum(16)
-    sleep_time = 50
+    sleep_time = 30
 
     for eye in eyes.values():
         eye.load_ordering()

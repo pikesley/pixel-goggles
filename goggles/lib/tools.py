@@ -52,3 +52,8 @@ def pendulum_timings():
     """Get the pendulum timings."""
     timings = [sin((i * pi) / 32) for i in range(1, 16, 2)]
     return list(reversed(timings)) + timings
+
+
+def is_single_colour(thing):
+    """Detect a single colour."""
+    return len(thing) == 3  # noqa: PLR2004

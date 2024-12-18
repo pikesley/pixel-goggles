@@ -7,7 +7,7 @@ from lib.tools import cos_curve, inverse_square_tail
 
 def race():
     """Spin the wheel."""
-    interval_divider = 5000
+    interval_divider = 50
 
     values = inverse_square_tail(16, coefficient=0.5, backwards=True)
     intervals = cos_curve(interval_divider)
@@ -15,15 +15,14 @@ def race():
     while True:
         for _ in range(16):
             colour = time_based_rgb()
-            # this is dog-slow
-            left_colours = [scale_colour(colour["bytes"], v) for v in values]
-            right_colours = [scale_colour(colour["inverse"], v) for v in values]
+            left_colours = [scale_colour(colour["bytes"], v) for v in values.items]
+            right_colours = [scale_colour(colour["inverse"], v) for v in values.items]
 
             eyes["left"].fill(left_colours)
             eyes["right"].fill(right_colours)
 
-        pixels.write()
-        time.sleep(intervals.head)
+            pixels.write()
+            time.sleep(intervals.head)
 
-        intervals.rotate()
-        values.rotate(direction="r")
+            intervals.rotate()
+            values.rotate(direction="r")

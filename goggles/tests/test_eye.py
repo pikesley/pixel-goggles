@@ -6,13 +6,56 @@ def test_single_filling():
     """Test filling from single ordering."""
     pixels = FakePixels(16)
     eye = Eye(pixels, "left")
-    eye.load_ordering()
+    eye.load_ordering(point="n")
     colours = list(range(100, 116))
 
     eye.fill(colours)
     assert pixels == (
         [114, 115, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113]
     )
+
+
+def test_single_filling_with_different_prime():
+    """Test filling from single ordering with a non-north origin."""
+    pixels = FakePixels(16)
+    eye = Eye(pixels, "left")
+    eye.load_ordering(point="s")
+    colours = list(range(100, 116))
+
+    eye.fill(colours)
+    assert pixels == (
+        [106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 100, 101, 102, 103, 104, 105]
+    )
+
+
+def test_point_colouring():
+    """Test it knows where its points are."""
+    pixels = FakePixels(16, default=0)
+    eye = Eye(pixels, "left")
+    eye.load_ordering(point="n")
+
+    eye["n"] = 1
+    assert pixels == ([0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+
+def test_trickier_point_colouring():
+    """Test it knows where its points are, from a different direction."""
+    pixels = FakePixels(16, default=0)
+    eye = Eye(pixels, "left")
+    eye.load_ordering(point="s")
+
+    eye["n"] = 1
+    assert pixels == ([0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+
+def test_even_trickier_point_colouring():
+    """Test it knows where its points are, from another different direction."""
+    pixels = FakePixels(16, default=0)
+    eye = Eye(pixels, "left")
+    eye.load_ordering(point="wsw")
+
+    eye["n"] = 1
+    assert pixels == ([0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 
 
 def test_pair_filling():
@@ -41,29 +84,13 @@ def test_right_side_filling():
     )
 
 
-# def test_remapping():
-#     """Test it remaps indeces."""
-#     pixels = FakePixels()
-#     left_eye = Eye(pixels, "left")
+def test_indexing_on_pairs():
+    """Test it can handle an index when it has pairs."""
+    pixels = FakePixels(16, default=0)
+    eye = Eye(pixels, "left")
+    eye.load_ordering(rotation="pairs", point="n")
 
-#     left_eye[0] = (255, 0, 0)
-#     assert pixels[2] == (255, 0, 0)
+    for i in range(9):
+        eye.set_pair(i, i)
 
-#     right_eye = Eye(pixels, "right")
-
-#     right_eye[0] = (0, 0, 255)
-#     assert pixels[30] == (0, 0, 255)
-
-
-def test_colour_point():
-    """Test it colours a point."""
-    pixels = FakePixels(32)
-    eye = Eye(pixels, "right")
-
-    eye.colour_point("s", (255, 0, 0))
-    assert pixels[22] == (255, 0, 0)
-
-    eye.colour_point("nw", (0, 255, 0))
-    assert pixels[16] == (0, 255, 0)
-
-    print("THIS WORKS BY ACCIDENT!!!")
+    assert pixels == ([2, 1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 7, 6, 5, 4, 3])

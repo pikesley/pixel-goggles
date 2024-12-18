@@ -9,14 +9,17 @@ if os.uname().sysname == "esp32":
     import machine
     import neopixel
 
+    from lib.eye import Eye
+    from lib.goggles import Goggles
+
     pixels = neopixel.NeoPixel(machine.Pin(pin), leds)
     length = len(pixels)
 
     on_board = machine.Pin(8, machine.Pin.OUT)
 
-    from lib.eye import Eye
-
     eyes = {
         "left": Eye(pixels, "left"),
         "right": Eye(pixels, "right"),
     }
+
+    goggles = Goggles(pixels)
