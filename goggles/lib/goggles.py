@@ -4,11 +4,11 @@ from lib.tools import is_single_colour
 
 
 class Goggles:
-    """An pair of giggles."""
+    """An pair of goggles."""
 
     def __init__(self, pixels):
         """Construct."""
-        self.pivels = pixels
+        self.pixels = pixels
 
         self.left = Eye(pixels, "left")
         self.right = Eye(pixels, "right")
@@ -32,3 +32,8 @@ class Goggles:
         else:
             self.left.fill(colours[:ring_size])
             self.right.fill(colours[ring_size:])
+
+    def off(self):
+        """Turn all pixels off."""
+        for i in range(len(self.pixels)):
+            self.pixels[i] = (0, 0, 0)

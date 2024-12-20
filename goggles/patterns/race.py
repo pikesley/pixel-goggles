@@ -15,8 +15,8 @@ def race():
     while True:
         for _ in range(ring_size):
             colour = time_based_rgb()
-            left_colours = [scale_colour(colour["bytes"], v) for v in values.items]
-            right_colours = [scale_colour(colour["inverse"], v) for v in values.items]
+            left_colours = [scale_colour(colour["bytes"], v) for v in values]
+            right_colours = [scale_colour(colour["inverse"], v) for v in values]
 
             eyes["left"].fill(left_colours)
             eyes["right"].fill(right_colours)

@@ -24,24 +24,6 @@ offsets = {
     "nne": 15,
 }
 
-# FancyList?
-compass_points = list(offsets.keys())
-
-
-def random_origin():
-    """Get a random compass point."""
-    return compass_points[randint(0, len(compass_points) - 1)]  # noqa: S311
-
-
-def random_rotation():
-    """Get a random rotation direction."""
-    rotation = "clockwise"
-    if randint(0, 1) == 0:  # noqa: S311
-        rotation = f"anti{rotation}"
-
-    return rotation
-
-
 def get_prime(side, start):
     """Work out the prime position."""
     prime = (tops[side] + offsets[start]) % ring_size
@@ -52,7 +34,7 @@ def get_prime(side, start):
     return int(prime)
 
 
-def get_ordering(side, start, direction="clockwise", overlap=False):  # noqa: FBT002
+def get_ordering(side, start, direction="clockwise", overlap=False):
     """Calculate an ordering."""
     offset = 0
     if side == "right":
@@ -73,20 +55,3 @@ def get_ordering(side, start, direction="clockwise", overlap=False):  # noqa: FB
         result += [result[0]]
 
     return result
-
-
-def get_pairs(side, start):
-    """Get pairs across the ring."""
-    ordering = get_ordering(side, start)
-    chunk_size = int((ring_size / 2) - 1)
-    first_chunk = ordering[1 : chunk_size + 1]
-    second_chunk = list(reversed(ordering[chunk_size + 2 :]))
-
-    pairs = [(ordering[0],)]
-
-    for i in range(chunk_size):
-        pairs.append((first_chunk[i], second_chunk[i]))  # noqa: PERF401
-
-    pairs.append((ordering[chunk_size + 1],))
-
-    return pairs

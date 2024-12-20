@@ -1,29 +1,34 @@
 import time
 
 from lib.colour_tools import just_an_rgb, scale_colour
-from lib.context import pixels
-from lib.orderings import get_pairs
-from lib.tools import colour_pair, get_intervals, inverse_square_tail
+from lib.context import goggles, pixels, ring_size
+from lib.tools import get_intervals, inverse_square_tail
+from lib.wings import Wings
 
 
 def flying_wave():
     """Waves of colour."""
     sleep_multiplier = 100
 
-    left = get_pairs("left", "wnw")
-    right = get_pairs("right", "ene")
+    wings = Wings()
 
-    values = inverse_square_tail(len(left) * 3)
+    values = inverse_square_tail(ring_size * 2)
     intervals = get_intervals(sleep_multiplier)
 
     while True:
-        colour = just_an_rgb()
-        for index, value in enumerate(values):
-            i = index % 9
-            colour_pair(pixels, left[i] + right[i], scale_colour(colour, value))
+        for wing in wings:
+            for _ in range(len(values)):
+                goggles.left.load_ordering(rotation="pairs", point=wing["left"])
+                goggles.right.load_ordering(rotation="pairs", point=wing["right"])
 
-        pixels.write()
+                colour = just_an_rgb()
+                colours = [scale_colour(colour, v) for v in values]
 
-        values.rotate()
-        intervals.rotate(direction="r")
-        time.sleep_ms(intervals.head)
+                goggles.left.fill(colours)
+                goggles.right.fill(colours)
+
+                pixels.write()
+
+                values.rotate()
+                intervals.rotate(direction="r")
+                time.sleep_ms(intervals.head)

@@ -30,11 +30,11 @@ class Eye:
         if isinstance(index, str):
             index = compass_points.index(index) - compass_points.index(self.prime_point)
 
-        self.pixels[self.ordering[index]] = colour
+        self.pixels[self.ordering[index % ring_size]] = colour
 
     def __getitem__(self, index):
         """Get an item."""
-        return self.ordering[index]
+        return self.ordering[index % ring_size]
 
     def set_pair(self, index, colour):
         """Set some items."""

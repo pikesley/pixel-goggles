@@ -15,7 +15,7 @@ def wave():
 
     while True:
         colour = just_an_rgb()
-        colours = [scale_colour(colour, v) for v in values.items]
+        colours = [scale_colour(colour, v) for v in values]
 
         goggles.left.fill(colours)
         goggles.right.fill(colours[9:])

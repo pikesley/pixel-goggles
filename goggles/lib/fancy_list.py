@@ -1,13 +1,14 @@
 class FancyList:
     """List with extra steps."""
 
-    def __init__(self, items):
+    def __init__(self, items, circular=False):  # noqa: FBT002
         """Construct."""
         self.items = items
+        self.circular = circular
 
     def __getitem__(self, index):
         """`[index]`."""
-        if index > len(self.items) - 1:
+        if self.circular and index > len(self) - 1:
             index = index % len(self)
         return self.items[index]
 
@@ -53,3 +54,7 @@ class FancyList:
     def reverse(self):
         """`reverse()`."""
         self.items.reverse()
+
+    def update(self, contents):
+        """Update our `items`."""
+        self.items = contents

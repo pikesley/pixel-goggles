@@ -2,7 +2,7 @@ import time
 
 from lib.colour_tools import just_an_rgb, scale_colour
 from lib.context import pixels
-from lib.orderings import get_ordering
+from lib.pendulum_tooling import get_ordering
 from lib.tools import inverse_square_tail, off, pendulum_timings
 
 offset = 2
@@ -76,3 +76,25 @@ def erase_tail(direction):
         pixels.write()
         tail_count -= 1
         time.sleep_ms(int(timing_scale / tail_off_factor))
+
+def get_ordering(side, start, direction="clockwise", overlap=False):
+    """Calculate an ordering."""
+    offset = 0
+    if side == "right":
+        offset = ring_size
+
+    prime = get_prime(side, start)
+    ordering = [prime]
+    tail = list(range(prime - 1, -1 + offset, -1)) + list(
+        range(ring_size - 1 + offset, prime, -1)
+    )
+
+    if "anti" in direction:
+        tail.reverse()
+
+    result = ordering + tail
+
+    if overlap:
+        result += [result[0]]
+
+    return result

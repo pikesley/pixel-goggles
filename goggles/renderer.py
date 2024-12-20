@@ -31,16 +31,18 @@ def make_right_anticlockwise():
     data = {}
 
     for key, values in lefts.items():
-        ordering = FancyList(values.items)
+        ordering = FancyList(values)
         # `tops["right"] - tops["left"]` has magic-number energy
         # but I think
         # * the `left` orderings are all offset by `tops["left"]` so we take that off
         # * and then the right eye starts at `tops["left"]` so we add that on
         # but we also add the `ring_size` for the offset
-        ordering.items = [
-            ((x + (tops["right"] - tops["left"])) % ring_size) + ring_size
-            for x in ordering.items
-        ]
+        ordering.update(
+            [
+                ((x + (tops["right"] - tops["left"])) % ring_size) + ring_size
+                for x in ordering
+            ]
+        )
         data[key] = ordering
 
     return data
@@ -51,7 +53,7 @@ def make_clockwise(antis):
     data = {}
 
     for key, values in antis.items():
-        ordering = FancyList(values.items)
+        ordering = FancyList(values)
         ordering.reverse()
         ordering.rotate(direction="r")
         data[key] = ordering
@@ -132,7 +134,7 @@ def render():
                 outpath = Path(*path_elements)
                 print(str(outpath))
                 outpath.write_text(
-                    json.dumps(data[eye][rotation][point].items), encoding="utf-8"
+                    json.dumps(data[eye][rotation][point]), encoding="utf-8"
                 )
 
                 path_elements.pop()
@@ -142,7 +144,7 @@ def render():
 
                 print(str(outpath))
                 outpath.write_text(
-                    json.dumps(data[eye]["pairs"][point].items), encoding="utf-8"
+                    json.dumps(data[eye]["pairs"][point]), encoding="utf-8"
                 )
 
                 path_elements.pop()

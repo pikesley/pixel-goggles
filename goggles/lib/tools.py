@@ -1,6 +1,6 @@
 from math import cos, pi, radians, sin
+from random import randint
 
-from lib.colour_tools import just_an_rgb
 from lib.fancy_list import FancyList
 
 
@@ -14,15 +14,6 @@ def get_intervals(multiplier):
     intervals += [0]
 
     return FancyList([int(t * multiplier) for t in intervals])
-
-
-def colour_pair(pixels, pair, colour=None):
-    """Apply colour to some indeces."""
-    if not colour:
-        colour = just_an_rgb()
-
-    for index in pair:
-        pixels[index] = colour
 
 
 def inverse_square_tail(length, coefficient=1, backwards=False):  # noqa: FBT002
@@ -57,3 +48,12 @@ def pendulum_timings():
 def is_single_colour(thing):
     """Detect a single colour."""
     return len(thing) == 3  # noqa: PLR2004
+
+
+def random_rotation():
+    """Get a random rotation direction."""
+    rotation = "clockwise"
+    if randint(0, 1) == 0:  # noqa: S311
+        rotation = f"anti{rotation}"
+
+    return rotation

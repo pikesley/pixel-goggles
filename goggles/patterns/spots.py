@@ -3,9 +3,8 @@ from math import ceil, floor
 from random import randint
 
 from lib.colour_tools import just_an_rgb
-from lib.context import length, pixels
-from lib.orderings import random_rotation, tops
-from lib.tools import cos_curve
+from lib.context import goggles, pixels, ring_size
+from lib.tools import cos_curve, random_rotation
 
 
 def spots():
@@ -16,21 +15,20 @@ def spots():
     intervals = cos_curve(interval_divider)
 
     direction = random_rotation()
-    outer_range = range(int(16 / spots), 0, -1)
+    outer_range = range(int(ring_size / spots), 0, -1)
 
     if "anti" in direction:
-        outer_range = range(int(16 / spots))
+        outer_range = range(int(ring_size / spots))
 
     while True:
         colour = just_an_rgb()
 
         for i in outer_range:
-            for j in range(length):
-                pixels[j] = (0, 0, 0)
+            goggles.off()
 
             for k in range(spots):
-                pixels[(get_rounding(k, spots, i) + tops["right"]) % 16] = colour
-                pixels[16 + (get_rounding(k, spots, i) + tops["left"]) % 16] = colour
+                goggles.left[(get_rounding(k, spots, i))] = colour
+                goggles.right[(get_rounding(k, spots, i))] = colour
 
             pixels.write()
             time.sleep(intervals.head)
