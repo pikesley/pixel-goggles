@@ -1,4 +1,4 @@
-from math import cos, pi, radians, sin
+from math import cos, radians
 from random import randint
 
 from lib.fancy_list import FancyList
@@ -14,6 +14,15 @@ def get_intervals(multiplier):
     intervals += [0]
 
     return FancyList([int(t * multiplier) for t in intervals])
+
+
+# def colour_pair(pixels, pair, colour=None):
+#     """Apply colour to some indeces."""
+#     if not colour:
+#         colour = just_an_rgb()
+
+#     for index in pair:
+#         pixels[index] = colour
 
 
 def inverse_square_tail(length, coefficient=1, backwards=False):  # noqa: FBT002
@@ -37,12 +46,6 @@ def off(pixels, write=False):  # noqa: FBT002
 
     if write:
         pixels.write()
-
-
-def pendulum_timings():
-    """Get the pendulum timings."""
-    timings = [sin((i * pi) / 32) for i in range(1, 16, 2)]
-    return list(reversed(timings)) + timings
 
 
 def is_single_colour(thing):

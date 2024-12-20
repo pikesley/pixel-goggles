@@ -1,4 +1,5 @@
 from patterns.flying_wave import flying_wave
+from patterns.pendulum import pendulum
 from patterns.pulse import pulse
 from patterns.race import race
 from patterns.rainbow import rainbow
@@ -10,6 +11,7 @@ from patterns.wave import wave
 
 patterns = [
     responder,
+    pendulum,
     flying_wave,
     spots,
     wave,
@@ -18,5 +20,4 @@ patterns = [
     sparkle,
     rainbow,
     race,
-    # nothing to see here
 ]
