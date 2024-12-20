@@ -2,7 +2,7 @@ import time
 
 import machine
 
-from lib.colour_tools import just_an_rgb, scale_colour, time_based_rgb
+from lib.colour_tools import scale_colour, time_based_rgb
 from lib.context import button_pin, goggles, pixels
 from lib.tools import inverse_square_tail
 
