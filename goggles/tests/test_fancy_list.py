@@ -35,3 +35,16 @@ def test_circularity():
 
     assert rl[2] == "c"
     assert rl[6] == "c"
+
+
+def test_resetting():
+    """Test it resets."""
+    fl = FancyList(list("abcdefghijkl"))
+    fl.rotate()
+    fl.rotate()
+    fl.rotate()
+
+    assert list(fl) == (["d", "e", "f", "g", "h", "i", "j", "k", "l", "a", "b", "c"])
+
+    fl.reset()
+    assert list(fl) == (["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"])

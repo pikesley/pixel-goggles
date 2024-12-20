@@ -3,7 +3,7 @@ class FancyList:
 
     def __init__(self, items, circular=False):  # noqa: FBT002
         """Construct."""
-        self.items = items
+        self.items = self.default_items = items
         self.circular = circular
 
     def __getitem__(self, index):
@@ -58,3 +58,7 @@ class FancyList:
     def update(self, contents):
         """Update our `items`."""
         self.items = contents
+
+    def reset(self):
+        """Back to initial state."""
+        self.items = self.default_items
