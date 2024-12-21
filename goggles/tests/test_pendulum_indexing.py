@@ -41,6 +41,7 @@ def test_limited_timings():
 def test_short_sequence():
     """Test a short sequence."""
     assert sequence(1) == {
+        "indeces": [7, 8, 9],
         "points": ["ssw", "s", "sse"],
         "intervals": [
             0.0980171403295606,
@@ -52,6 +53,7 @@ def test_short_sequence():
 def test_longer_sequence():
     """Test a longer sequence."""
     assert sequence(3) == {
+        "indeces": [5, 6, 7, 8, 9, 10, 11],
         "points": ["wsw", "sw", "ssw", "s", "sse", "se", "ese"],
         "intervals": [
             0.47139673682599764,

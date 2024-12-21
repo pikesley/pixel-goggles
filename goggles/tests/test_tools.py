@@ -1,4 +1,3 @@
-
 from lib.tools import get_intervals, inverse_square_tail
 
 

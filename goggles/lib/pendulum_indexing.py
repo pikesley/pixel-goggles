@@ -13,7 +13,8 @@ def pendulum_timings(length=16):
 
 def sequence(offset):
     """Get a sequence."""
+    indeces = list(range(south_index - offset, south_index + offset + 1))
     points = compass_points[south_index - offset : south_index + offset + 1]
     intervals = pendulum_timings(length=int(offset * 2))
 
-    return {"points": points, "intervals": intervals}
+    return {"indeces": indeces, "points": points, "intervals": intervals}

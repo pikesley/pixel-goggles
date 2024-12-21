@@ -10,8 +10,8 @@ from patterns.spots import spots
 from patterns.wave import wave
 
 patterns = [
-    responder,
     pendulum,
+    responder,
     flying_wave,
     spots,
     wave,
