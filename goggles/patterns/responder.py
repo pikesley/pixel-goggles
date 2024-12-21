@@ -18,7 +18,6 @@ def responder():
     global rotate_count  # noqa: PLW0603
 
     while True:
-        # colour = just_an_rgb()
         colour = time_based_rgb(5)
         goggles.left.fill(scale_colour(colour["bytes"], values.head))
         goggles.right.fill(scale_colour(colour["inverse"], values.head))
