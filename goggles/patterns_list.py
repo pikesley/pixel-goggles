@@ -7,17 +7,19 @@ from patterns.responder import responder
 from patterns.snake import snake
 from patterns.sparkle import sparkle
 from patterns.spots import spots
+from patterns.tilter import tilter
 from patterns.wave import wave
 
 patterns = [
-    pendulum,
-    responder,
-    flying_wave,
+    tilter,
+    sparkle,
     spots,
+    responder,
+    pendulum,
+    flying_wave,
     wave,
     snake,
     pulse,
-    sparkle,
     rainbow,
     race,
 ]
