@@ -46,22 +46,21 @@ def filled_points(top, proportion):
 
 def locate_points(top):
     """Work out how far points are from the bottom."""
-    fancy_points = FancyList(compass_points)
+    fancy_points = FancyList(compass_points.copy())
     fancy_points.rotate_until(top)
-    return dict(zip(fancy_points, distances, strict=False))
+    return dict(zip(fancy_points, distances))
 
 
-# def rotation_lookups(anticlockwise_limit, clockwise_limit):
-#     """Assign compass-points to rotations."""
-#     fancy_points = FancyList(compass_points)
-#     fancy_points.reverse()
-#     fancy_points.rotate_until("w")
+def rotation_lookups(anticlockwise_limit, clockwise_limit):
+    """Assign compass-points to rotations."""
+    ranges = assign_ranges(anticlockwise_limit, clockwise_limit)
+    lookups = {}
+    for i in range(anticlockwise_limit, clockwise_limit + 1):
+        for key, value in ranges.items():
+            if value[1] >= i > value[0]:
+                lookups[i] = key
 
-#     span = (clockwise_limit - anticlockwise_limit) + 1
-#     lookups = {}
-#     for i in range(span):
-#         point = fancy_points[ceil(i * interval)]
-#         lookups[anticlockwise_limit + i] = point
+    return lookups
 
 
 def assign_ranges(anticlockwise_limit, clockwise_limit):

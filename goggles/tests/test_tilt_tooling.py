@@ -1,4 +1,9 @@
-from lib.tilt_tooling import assign_ranges, filled_points, locate_points
+from lib.tilt_tooling import (
+    assign_ranges,
+    filled_points,
+    locate_points,
+    rotation_lookups,
+)
 
 
 def test_easy_filling():
@@ -142,28 +147,36 @@ def test_off_balance_ranges():
     }
 
 
-# def test_rotation_lookups():
-#     """Test the lookups."""
-#     assert rotation_lookups(-4, 4) == {
-#         -4: "w",
-#         -3: "wnw",
-#         -2: "nw",
-#         -1: "nnw",
-#         0: "n",
-#         1: "nne",
-#         2: "ne",
-#         3: "ene",
-#         4: "e",
-#     }
+def test_rotation_lookups():
+    """Test the lookups."""
+    assert rotation_lookups(-4, 4) == {
+        -4: "w",
+        -3: "wnw",
+        -2: "nw",
+        -1: "nnw",
+        0: "n",
+        1: "nne",
+        2: "ne",
+        3: "ene",
+        4: "e",
+    }
 
-#     # assert rotation_lookups(-8, 8) == {
-#     #     -8: "w",
-#     #     -6: "wnw",
-#     #     -4: "nw",
-#     #     -2: "nnw",
-#     #     0: "n",
-#     #     2: "nne",
-#     #     4: "ne",
-#     #     6: "ene",
-#     #     8: "e",
-#     # }
+    assert rotation_lookups(-8, 8) == {
+        -8: "w",
+        -7: "w",
+        -6: "wnw",
+        -5: "wnw",
+        -4: "nw",
+        -3: "nw",
+        -2: "nnw",
+        -1: "nnw",
+        0: "n",
+        1: "n",
+        2: "nne",
+        3: "nne",
+        4: "ne",
+        5: "ne",
+        6: "ene",
+        7: "ene",
+        8: "e",
+    }
