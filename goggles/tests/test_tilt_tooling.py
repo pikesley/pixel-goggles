@@ -1,4 +1,4 @@
-from lib.tilt_tooling import filled_points, locate_points
+from lib.tilt_tooling import assign_ranges, filled_points, locate_points
 
 
 def test_easy_filling():
@@ -74,3 +74,69 @@ def test_locating_points():
         "nnw": 0.6464466094067263,
         "nw": 0.8086582838174551,
     }
+
+
+def test_assign_ranges():
+    """Test it assigns ranges correctly."""
+    assert assign_ranges(-4, 4) == {
+        "w": (-4.5, -3.5),
+        "wnw": (-3.5, -2.5),
+        "nw": (-2.5, -1.5),
+        "nnw": (-1.5, -0.5),
+        "n": (-0.5, 0.5),
+        "nne": (0.5, 1.5),
+        "ne": (1.5, 2.5),
+        "ene": (2.5, 3.5),
+        "e": (3.5, 4.5),
+    }
+
+    assert assign_ranges(-8, 8) == {
+        "w": (-9, -7),
+        "wnw": (-7, -5),
+        "nw": (-5, -3),
+        "nnw": (-3, -1),
+        "n": (-1, 1),
+        "nne": (1, 3),
+        "ne": (3, 5),
+        "ene": (5, 7),
+        "e": (7, 9),
+    }
+
+    # assert assign_ranges(0, 8) == {
+    #     "w": (4, -7),
+    #     "wnw": (-7, -5),
+    #     "nw": (-5, -3),
+    #     "nnw": (-3, -1),
+    #     "n": (-1, 1),
+    #     "nne": (1, 3),
+    #     "ne": (3, 5),
+    #     "ene": (5, 7),
+    #     "e": (7, 9)
+    # }
+
+
+# def test_rotation_lookups():
+#     """Test the lookups."""
+#     assert rotation_lookups(-4, 4) == {
+#         -4: "w",
+#         -3: "wnw",
+#         -2: "nw",
+#         -1: "nnw",
+#         0: "n",
+#         1: "nne",
+#         2: "ne",
+#         3: "ene",
+#         4: "e",
+#     }
+
+#     # assert rotation_lookups(-8, 8) == {
+#     #     -8: "w",
+#     #     -6: "wnw",
+#     #     -4: "nw",
+#     #     -2: "nnw",
+#     #     0: "n",
+#     #     2: "nne",
+#     #     4: "ne",
+#     #     6: "ene",
+#     #     8: "e",
+#     # }
