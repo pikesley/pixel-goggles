@@ -21,16 +21,16 @@ distances = [
 ]
 
 base_values = [
-    -1.125,
-    -0.875,
-    -0.625,
-    -0.375,
-    -0.125,
-    0.125,
-    0.375,
-    0.625,
-    0.875,
     1.125,
+    0.875,
+    0.625,
+    0.375,
+    0.125,
+    -0.125,
+    -0.375,
+    -0.625,
+    -0.875,
+    -1.125,
 ]
 
 
@@ -48,7 +48,7 @@ def locate_points(top):
     """Work out how far points are from the bottom."""
     fancy_points = FancyList(compass_points.copy())
     fancy_points.rotate_until(top)
-    return dict(zip(fancy_points, distances))
+    return dict(zip(fancy_points, distances))  # noqa: B905
 
 
 def rotation_lookups(anticlockwise_limit, clockwise_limit):
@@ -57,7 +57,7 @@ def rotation_lookups(anticlockwise_limit, clockwise_limit):
     lookups = {}
     for i in range(anticlockwise_limit, clockwise_limit + 1):
         for key, value in ranges.items():
-            if value[1] >= i > value[0]:
+            if value[0] >= i > value[1]:
                 lookups[i] = key
 
     return lookups
