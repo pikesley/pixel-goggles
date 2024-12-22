@@ -71,12 +71,13 @@ def assign_ranges(anticlockwise_limit, clockwise_limit):
     fancy_points.rotate_until("w")
 
     multiplier = (clockwise_limit - anticlockwise_limit) / 2
+    imbalance = (abs(0 - clockwise_limit) - abs(0 - anticlockwise_limit)) / 2
 
     ranges = {}
     for i in range(len(base_values) - 1):
         ranges[fancy_points[i]] = (
-            base_values[i] * multiplier,
-            base_values[i + 1] * multiplier,
+            (base_values[i] * multiplier) + imbalance,
+            (base_values[i + 1] * multiplier) + imbalance,
         )
 
     return ranges
