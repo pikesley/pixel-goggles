@@ -12,7 +12,7 @@ i2c = SoftI2C(sda=Pin(9), scl=Pin(8), freq=400000)
 class ADXL345:
     """Tilt sensor."""
 
-    def __init__(self, i2c, addr=device):
+    def __init__(self, i2c=i2c, addr=device):
         """Construct."""
         self.addr = addr
         self.i2c = i2c
@@ -59,6 +59,3 @@ class ADXL345:
     def buff(self):
         """Read the data."""
         return self.i2c.readfrom_mem(self.addr, reg_address, TO_READ)
-
-
-tilt_sensor = ADXL345(i2c)
