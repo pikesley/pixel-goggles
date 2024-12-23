@@ -2,11 +2,13 @@
 
 from machine import Pin, SoftI2C
 
+from lib.context import pins
+
 device = 0x53
 reg_address = 0x32
 TO_READ = 6
 buff = bytearray(6)
-i2c = SoftI2C(sda=Pin(9), scl=Pin(8), freq=400000)
+i2c = SoftI2C(sda=Pin(pins["sda"]), scl=Pin(pins["scl"]), freq=400000)
 
 
 class ADXL345:
@@ -17,37 +19,22 @@ class ADXL345:
         self.addr = addr
         self.i2c = i2c
 
-    @property
-    def x_val(self):
-        """X."""
+    def read_value(self, index):
+        """Read some data."""
         buff = self.buff()
-        x = (int(buff[1]) << 8) | buff[0]
-        if x > 32767:  # noqa: PLR2004
-            x -= 65536
-        return x
-
-    @property
-    def y_val(self):
-        """Y."""
-        buff = self.buff()
-        y = (int(buff[3]) << 8) | buff[2]
-        if y > 32767:  # noqa: PLR2004
-            y -= 65536
-        return y
-
-    @property
-    def z_val(self):
-        """Z."""
-        buff = self.buff()
-        z = (int(buff[5]) << 8) | buff[4]
-        if z > 32767:  # noqa: PLR2004
-            z -= 65536
-        return z
+        data = (int(buff[index + 1]) << 8) | buff[index]
+        if data > 32767:  # noqa: PLR2004
+            data -= 65536
+        return data
 
     @property
     def values(self):
         """Us as a dict."""
-        return {"x": self.x_val, "y": self.y_val, "z": self.z_val}
+        return {
+            "x": self.read_value(0),
+            "y": self.read_value(2),
+            "z": self.read_value(4),
+        }
 
     def buff(self):
         """Read the data."""
