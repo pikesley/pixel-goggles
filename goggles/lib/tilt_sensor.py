@@ -16,50 +16,33 @@ limits = {
 }
 
 
-class ADXL345:
-    """Tilt sensor."""
+def read_buff():
+    """Read the data."""
+    return i2c.readfrom_mem(device, reg_address, TO_READ)
 
-    def __init__(self, i2c=i2c, addr=device):
-        """Construct."""
-        self.addr = addr
-        self.i2c = i2c
 
-    def read_value(self, index):
-        """Read some data."""
-        buff = self.buff()
-        data = (int(buff[index + 1]) << 8) | buff[index]
-        if data > 32767:  # noqa: PLR2004
-            data -= 65536
-        return data
+def read_value(index):
+    """Read some data."""
+    buff = read_buff()
+    data = (int(buff[index + 1]) << 8) | buff[index]
+    if data > 32767:  # noqa: PLR2004
+        data -= 65536
+    return data
 
-    @property
-    def values(self):
-        """Us as a dict."""
-        return {
-            "x": self.read_value(0),
-            "y": self.read_value(2),
-            "z": self.read_value(4),
-        }
 
-    @property
-    def restricted_values(self):
-        """Restricted values."""
-        vals = self.values
+def values(restricted=True):  # noqa: FBT002
+    """Get a dict of values."""
+    vals = {
+        "x": read_value(0),
+        "y": read_value(2),
+        "z": read_value(4),
+    }
 
-        x = vals["x"]
-        x = min(x, limits["x"]["clockwise"])
-        x = max(x, limits["x"]["anticlockwise"])
+    if restricted:
+        vals["x"] = min(vals["x"], limits["x"]["clockwise"])
+        vals["x"] = max(vals["x"], limits["x"]["anticlockwise"])
 
-        vals["x"] = x
+        vals["y"] = min(vals["y"], limits["y"]["vertical"])
+        vals["y"] = max(vals["y"], limits["y"]["horizontal"])
 
-        y = vals["y"]
-        y = min(y, limits["y"]["vertical"])
-        y = max(y, limits["y"]["horizontal"])
-
-        vals["y"] = y
-
-        return vals
-
-    def buff(self):
-        """Read the data."""
-        return self.i2c.readfrom_mem(self.addr, reg_address, TO_READ)
+    return vals
