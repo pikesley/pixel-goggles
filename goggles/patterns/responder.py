@@ -3,7 +3,7 @@ import time
 import machine
 
 from lib.colour_tools import scale_colour, time_based_rgb
-from lib.context import button_pin, goggles, pixels
+from lib.context import goggles, pins, pixels
 from lib.tools import inverse_square_tail
 
 pulse_length = 100
@@ -37,5 +37,5 @@ def reset_values(pin):
         values.reset()
 
 
-switch = machine.Pin(button_pin, machine.Pin.IN)
+switch = machine.Pin(pins["button"], machine.Pin.IN)
 switch.irq(trigger=machine.Pin.IRQ_RISING, handler=reset_values)

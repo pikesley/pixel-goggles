@@ -1,3 +1,5 @@
+import pytest
+
 from lib.fancy_list import FancyList
 
 
@@ -48,3 +50,14 @@ def test_resetting():
 
     fl.reset()
     assert list(fl) == (["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"])
+
+
+def test_rotate_until():
+    """Test it gets the required item to the front."""
+    fl = FancyList(list("abcdefghijkl"))
+    fl.rotate_until("g")
+
+    assert list(fl) == (["g", "h", "i", "j", "k", "l", "a", "b", "c", "d", "e", "f"])
+
+    with pytest.raises(KeyError):
+        fl.rotate_until("x")

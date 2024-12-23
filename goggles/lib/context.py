@@ -1,7 +1,12 @@
 import os
 
-data_pin = 1
-button_pin = 0
+pins = {
+    "data": 1,
+    "button": 0,
+    "sda": 9,
+    "scl": 8,
+}
+
 leds = 32
 ring_size = 16
 
@@ -14,7 +19,7 @@ if os.uname().sysname == "esp32":
     from lib.eye import Eye
     from lib.goggles import Goggles
 
-    pixels = neopixel.NeoPixel(machine.Pin(data_pin), leds)
+    pixels = neopixel.NeoPixel(machine.Pin(pins["data"]), leds)
     length = len(pixels)
 
     on_board = machine.Pin(8, machine.Pin.OUT)

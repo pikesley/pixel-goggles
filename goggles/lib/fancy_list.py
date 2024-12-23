@@ -62,3 +62,11 @@ class FancyList:
     def reset(self):
         """Back to initial state."""
         self.items = self.default_items
+
+    def rotate_until(self, item):
+        """Rotate until `item` is at [0]`."""
+        if item not in self.items:
+            raise KeyError
+
+        while self.head != item:
+            self.rotate()
