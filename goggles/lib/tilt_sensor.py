@@ -16,13 +16,6 @@ class ADXL345:
         """Construct."""
         self.addr = addr
         self.i2c = i2c
-        b = bytearray(1)
-        b[0] = 0
-        self.i2c.writeto_mem(self.addr, 0x2D, b)
-        b[0] = 16
-        self.i2c.writeto_mem(self.addr, 0x2D, b)
-        b[0] = 8
-        self.i2c.writeto_mem(self.addr, 0x2D, b)
 
     @property
     def x_val(self):
