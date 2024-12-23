@@ -10,6 +10,11 @@ TO_READ = 6
 buff = bytearray(6)
 i2c = SoftI2C(sda=Pin(pins["sda"]), scl=Pin(pins["scl"]), freq=400000)
 
+limits = {
+    "x": {"anticlockwise": -235, "clockwise": 270},
+    "y": {"horizontal": 0, "vertical": 260},
+}
+
 
 class ADXL345:
     """Tilt sensor."""
@@ -35,6 +40,25 @@ class ADXL345:
             "y": self.read_value(2),
             "z": self.read_value(4),
         }
+
+    @property
+    def restricted_values(self):
+        """Restricted values."""
+        vals = self.values
+
+        x = vals["x"]
+        x = min(x, limits["x"]["clockwise"])
+        x = max(x, limits["x"]["anticlockwise"])
+
+        vals["x"] = x
+
+        y = vals["y"]
+        y = min(y, limits["y"]["vertical"])
+        y = max(y, limits["y"]["horizontal"])
+
+        vals["y"] = y
+
+        return vals
 
     def buff(self):
         """Read the data."""
