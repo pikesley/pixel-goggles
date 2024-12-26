@@ -48,3 +48,34 @@ def assemble_string(*characters):
             string[-1] += character[i]
 
     return string
+
+
+def flatten(lists):
+    """Flatten some lists."""
+    return sum(lists, [])  # noqa: RUF017
+
+
+def run_length_encode(data):
+    """RLE a list."""
+    encoded = []
+    accumulator = 0
+    step = 0
+    current = data[0]
+
+    for step in range(len(data) - 1):
+        current = data[step]
+        nxt = data[step + 1]
+
+        if nxt == current:
+            accumulator += 1
+
+        else:
+            encoded.append(accumulator + 1)
+            encoded.append(current)
+            accumulator = 0
+            current = nxt
+
+    encoded.append(accumulator + 1)
+    encoded.append(current)
+
+    return encoded
