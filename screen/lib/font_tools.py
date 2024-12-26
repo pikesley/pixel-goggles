@@ -84,7 +84,7 @@ def run_length_encode(data):
     return encoded
 
 
-def get_data(text, scale_factor=2, on_colour=255, off_colour=0):
+def text_data(text, scale_factor=2, on_colour=255, off_colour=0):
     """Get some printable data from some ASCII text."""
     characters = [
         scale_bits(bytes_to_bits(sinclair[character]), scale_factor)
