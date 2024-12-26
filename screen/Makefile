@@ -41,4 +41,4 @@ flash:
 		0x0 \
 		../firmware/c3-current
 
-reinstall: nuke flash push renders connect
+reinstall: nuke flash push connect
