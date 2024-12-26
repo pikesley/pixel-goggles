@@ -5,36 +5,46 @@ device = 0x3E
 
 size = {"x": 240, "y": 135}
 
+class ST7789v2:
+    """LCD screen."""
+    def __init__(self, i2c=i2c, device=device, background_colour=(0, 0, 0), brightness=127, invert_colours=False):
+        """Construct."""
+        self.i2c = i2c
+        self.device = device
+        self.background_colour = background_colour
+        self.brightness = brightness
+        self.invert_colours = invert_colours
 
-def initialise(background_colour=(0, 0, 0)):
-    """Clear screen."""
-    b = bytearray(1)
+    def turn_on(self):
+        """Turn screen on."""
+        self.send_command(0x22, self.brightness)
 
-    # turn screen on
-    b[0] = 255
-    i2c.writeto_mem(device, 0x22, b)
+    def rotate(self, type=1):
+        """Rotate screen."""
+        self.send_command(0x36, type)
 
-    # disable colour inversion
-    b[0] = 0
-    i2c.writeto_mem(device, 0x20, b)
+    def set_inversion(self):
+        """Set colour inversion."""
+        command = 0x20
+        if self.invert_colours:
+            command = 0x21
 
-    # rotate screen
-    b[0] = 1
-    i2c.writeto_mem(device, 0x36, b)
+        self.send_command(command, 0)
 
-    fill_screen(background_colour)
-
-
-def fill_screen(colour):
-    """Fill the screen with `(r, g, b)`."""
-    draw_rect(0, 0, size["x"], size["y"], colour)
+    def fill_screen(self, colour):
+        """Fill the screen with `(r, g, b)`."""
+        self.draw_rect(0, 0, size["x"], size["y"], colour)
 
 
-def draw_rect(x_left, y_top, x_right, y_bottom, colour):
-    """Draw a rectangle."""
-    command = 0x6B
-    i2c.writeto_mem(
-        device,
-        command,
-        bytearray([x_left, y_top, x_right, y_bottom, colour[0], colour[1], colour[2]]),
-    )
+    def draw_rect(self, x_left, y_top, x_right, y_bottom, colour):
+        """Draw a rectangle."""
+        command = 0x6B
+        i2c.writeto_mem(
+            device,
+            command,
+            bytearray([x_left, y_top, x_right, y_bottom, colour[0], colour[1], colour[2]]),
+        )
+
+    def send_command(self, command, data):
+        """Send a command."""
+        self.i2c.writeto_mem(self.device, command, bytearray(data))
