@@ -1,9 +1,11 @@
-from lib.screen import initialise, size, draw_rect, i2c, device
+# ruff: noqa
+import json
 from random import randint
+
 from lib.colour_tools import time_based_rgb
 from lib.fancy_list import FancyList
-import json
 from lib.font_tools import bytes_to_bits, scale_bits
+from lib.screen import device, draw_rect, i2c, initialise, size
 
 file = open("conf/font.json")  # noqa: SIM115, PTH123
 chars = json.loads(file.read())
@@ -31,23 +33,22 @@ def random_blitz():
 def fix_char(char):
     """Fix char."""
     fixed = []
-    bits = scale_bits(bytes_to_bits(chars[char]), 3)
+    bits = scale_bits(bytes_to_bits(chars[char]), 4)
     for line in bits:
         fixed.append([])
         for c in line:
             # 0x41 - rgb332 - 1 byte
             # 0x42 - rgb565 - 2 bytes
             # 0x43 - rgb888 - 3 bytes
-            if c == "0":
+            if c == 0:
                 fixed[-1].append(0)
                 # fixed[-1].append(255)
                 # fixed[-1].append(255)
-            if c == "1":
+            if c == 1:
                 fixed[-1].append(255)
                 # fixed[-1].append(0)
                 # fixed[-1].append(0)
 
-    print(fixed)
     return sum(fixed, [])
 
 
@@ -58,14 +59,14 @@ for i, line in enumerate(text):
     i2c.writeto_mem(
         device,
         0x2B,
-        bytearray([10 + (i * 24), 33 + (i * 24)]),
+        bytearray([46 + (i * 24), 77 + (i * 24)]),
     )
 
     for index, c in enumerate(line):
         i2c.writeto_mem(
             device,
             0x2A,
-            bytearray([10 + (index * 24), 33 + (index * 24)]),
+            bytearray([26 + (index * 32), 57 + (index * 32)]),
         )
 
         i2c.writeto_mem(device, 0x41, bytearray(fix_char(c)))

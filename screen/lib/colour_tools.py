@@ -47,7 +47,7 @@ def rgb_from_degrees(degrees, brightness=1):
     }
 
 
-def rgb_from_hue(decimal, brightness=None):
+def rgb_from_hue(decimal, brightness=None):  # noqa: ARG001
     """Get RGB from hue value (0.0 - 1.0)."""
     return rgb_from_degrees((decimal % 1.0) * 360, brightness=1)
 
