@@ -1,6 +1,7 @@
 from machine import Pin, SoftI2C
 
 from lib.font_tools import text_data
+from lib.screen_tools import rgb_to_332
 
 i2c = SoftI2C(sda=Pin(9), scl=Pin(8), freq=400000)
 device = 0x3E
@@ -15,7 +16,7 @@ class ST7789v2:
         self,
         i2c=i2c,
         device=device,
-        background_colour=(0, 0, 0),
+        background_colour=0,
         brightness=255,
         invert_colours=False,  # noqa: FBT002
     ):
@@ -52,13 +53,16 @@ class ST7789v2:
         self.fill_screen(self.background_colour)
 
     def fill_screen(self, colour):
-        """Fill the screen with `(r, g, b)`."""
+        """Fill the screen with colour."""
         self.draw_rect(0, 0, size["x"], size["y"], colour)
 
     def draw_rect(self, x_left, y_top, x_right, y_bottom, colour):
         """Draw a rectangle."""
+        if not isinstance(colour, int):
+            colour = rgb_to_332(colour)
+
         self.send_command(
-            0x6B, [x_left, y_top, x_right, y_bottom, colour[0], colour[1], colour[2]]
+            0x69, [x_left, y_top, x_right, y_bottom, colour]
         )
 
     def send_command(self, command, data):
