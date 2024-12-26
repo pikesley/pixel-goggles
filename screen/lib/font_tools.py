@@ -1,3 +1,6 @@
+from lib.chars import sinclair
+
+
 def bytes_to_bits(byte_list):
     """Turn bytes into lists of bits."""
     return [[int(i) for i in list(f"{byte:#010b}"[2:])] for byte in byte_list]
@@ -79,3 +82,16 @@ def run_length_encode(data):
     encoded.append(current)
 
     return encoded
+
+
+def get_data(text, scale_factor=2, on_colour=255, off_colour=0):
+    """Get some printable data from some ASCII text."""
+    characters = [
+        scale_bits(bytes_to_bits(sinclair[character]), scale_factor)
+        for character in text
+    ]
+
+    string = assemble_string(*characters)
+    coloured = colour_bits(string, on_colour, off_colour)
+    flattened = flatten(coloured)
+    return run_length_encode(flattened)
