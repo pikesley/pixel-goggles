@@ -37,3 +37,14 @@ def colour_bits(bits, on_colour, off_colour):
                     coloured_bits[-1].append(element)
 
     return coloured_bits
+
+
+def assemble_string(*characters):
+    """Assemble characters into horizontal strings."""
+    string = []
+    for i in range(len(characters[0])):
+        string.append([])
+        for character in characters:
+            string[-1] += character[i]
+
+    return string

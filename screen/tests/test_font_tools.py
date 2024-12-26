@@ -1,4 +1,4 @@
-from lib.font_tools import bytes_to_bits, colour_bits, scale_bits
+from lib.font_tools import assemble_string, bytes_to_bits, colour_bits, scale_bits
 
 
 def test_bytes_to_bits():
@@ -69,4 +69,27 @@ def test_colour_bits():
         [0, 63, 127, 255, 0, 63, 0, 63],
         [0, 63, 127, 255, 127, 255, 127, 255],
         [0, 63, 127, 255, 0, 63, 0, 63],
+    ]
+
+
+def test_assemble_string():
+    """Test it adds characters together."""
+    left = [
+        [0, 1, 1, 0],
+        [0, 1, 1, 1],
+        [0, 0, 1, 0],
+        [0, 0, 0, 0],
+    ]
+    right = [
+        [0, 0, 0, 1],
+        [1, 0, 0, 1],
+        [0, 0, 1, 1],
+        [1, 1, 1, 1],
+    ]
+
+    assert assemble_string(left, right) == [
+        [0, 1, 1, 0, 0, 0, 0, 1],
+        [0, 1, 1, 1, 1, 0, 0, 1],
+        [0, 0, 1, 0, 0, 0, 1, 1],
+        [0, 0, 0, 0, 1, 1, 1, 1],
     ]
