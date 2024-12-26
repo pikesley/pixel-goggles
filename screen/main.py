@@ -32,6 +32,7 @@ def fix_char(char):
     fixed = []
     bits = [list(f"{i:#010b}"[2:]) for i in chars[char]]
     for line in bits:
+        print(line)
         fixed.append([])
         for c in line:
             # 0x41 - rgb332 - 1 byte
@@ -51,20 +52,99 @@ def fix_char(char):
 
 text = ["Holy shit it works", " ", "Thank you, Mastodon nerds", " ", "Merry Christmas!"]
 
-for i, line in enumerate(text):
-    i2c.writeto_mem(
-        device,
-        0x2B,
-        bytearray([10 + (i * 8), 17 + (i * 8)]),
-    )
+# for i, line in enumerate(text):
+#     i2c.writeto_mem(
+#         device,
+#         0x2B,
+#         bytearray([10 + (i * 8), 17 + (i * 8)]),
+#     )
 
-    for index, c in enumerate(line):
-        i2c.writeto_mem(
-            device,
-            0x2A,
-            bytearray([10 + (index * 8), 17 + (index * 8)]),
-        )
+#     for index, c in enumerate(line):
+#         i2c.writeto_mem(
+#             device,
+#             0x2A,
+#             bytearray([10 + (index * 8), 17 + (index * 8)]),
+#         )
 
-        i2c.writeto_mem(device, 0x41, bytearray(fix_char(c)))
+#         i2c.writeto_mem(device, 0x41, bytearray(fix_char(c)))
 
-i2c.stop()
+# i2c.stop()
+
+i2c.writeto_mem(
+device,
+0x2B,
+bytearray([10, 17]),
+)
+
+i2c.writeto_mem(
+device,
+0x2A,
+bytearray([10, 17]),
+)
+[
+['0', '0', '0', '0', '0', '0', '0', '0'],
+['0', '1', '0', '0', '0', '0', '1', '0'],
+['0', '1', '0', '0', '0', '0', '1', '0'],
+['0', '1', '1', '1', '1', '1', '1', '0'],
+['0', '1', '0', '0', '0', '0', '1', '0'],
+['0', '1', '0', '0', '0', '0', '1', '0'],
+['0', '1', '0', '0', '0', '0', '1', '0'],
+['0', '0', '0', '0', '0', '0', '0', '0'],
+]
+
+[
+    '0', '0', '0', '0', '0', '0', '0', '0', '0',
+    '1',
+    '0', '0', '0', '0',
+    '1',
+    '0', '0',
+    '1',
+    '0', '0', '0', '0',
+    '1',
+    '0', '0',
+    '1', '1', '1', '1', '1', '1',
+    '0', '0',
+    '1',
+    '0', '0', '0', '0',
+    '1',
+    '0', '0',
+    '1',
+    '0', '0', '0', '0',
+    '1',
+    '0', '0',
+    '1',
+    '0', '0', '0', '0',
+    '1',
+    '0', '0', '0', '0', '0', '0', '0', '0', '0']
+
+data = [
+9, 0,
+1, 255,
+4, 0,
+1, 255,
+2, 0,
+1, 255,
+4, 0,
+1, 255,
+2, 0,
+6, 255,
+2, 0,
+1, 255,
+4, 0,
+1, 255,
+2, 0,
+1, 255,
+4, 0,
+1, 255,
+2, 0,
+1, 255,
+4, 0,
+1, 255,
+9, 0
+]
+
+i2c.writeto_mem(
+device,
+0x49,
+bytearray(data),
+)
