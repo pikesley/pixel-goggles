@@ -60,6 +60,7 @@ def flatten(lists):
 
 def run_length_encode(data):
     """RLE a list."""
+    # TODO: there's a bug here
     encoded = []
     accumulator = 0
     step = 0
@@ -84,7 +85,7 @@ def run_length_encode(data):
     return encoded
 
 
-def text_data(text, scale_factor=2, on_colour=255, off_colour=0):
+def text_data(text, scale_factor=2, on_colour=255, off_colour=0, rle=False):  # noqa: FBT002
     """Get some printable data from some ASCII text."""
     characters = [
         scale_bits(bytes_to_bits(sinclair[character]), scale_factor)
@@ -94,4 +95,8 @@ def text_data(text, scale_factor=2, on_colour=255, off_colour=0):
     string = assemble_string(*characters)
     coloured = colour_bits(string, on_colour, off_colour)
     flattened = flatten(coloured)
-    return run_length_encode(flattened)
+
+    if rle:
+        return run_length_encode(flattened)
+
+    return flattened

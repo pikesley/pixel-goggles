@@ -1,12 +1,15 @@
 from machine import Pin, SoftI2C
 
 from lib.font_tools import text_data
-from lib.screen_tools import rgb_to_332
+from lib.screen_tools import (
+    horizontal_centering_offsets,
+    rgb_to_332,
+    size,
+    vertical_centering_offsets,
+)
 
 i2c = SoftI2C(sda=Pin(9), scl=Pin(8), freq=400000)
 device = 0x3E
-
-size = {"x": 240, "y": 135}
 
 
 class ST7789v2:
@@ -61,9 +64,7 @@ class ST7789v2:
         if not isinstance(colour, int):
             colour = rgb_to_332(colour)
 
-        self.send_command(
-            0x69, [x_left, y_top, x_right, y_bottom, colour]
-        )
+        self.send_command(0x69, [x_left, y_top, x_right, y_bottom, colour])
 
     def send_command(self, command, data):
         """Send a command."""
@@ -75,8 +76,25 @@ class ST7789v2:
     def write_text(self, text, x, y, colour, scale_factor=2):
         """Write the text at (x, y)."""
         offset = scale_factor * 8
-        self.send_command(0x2B, [y, y + offset - 1])
-        self.send_command(0x2A, [x, x + (offset * len(text)) - 1])
+
+        # TODO pull this out
+        if not isinstance(colour, int):
+            colour = rgb_to_332(colour)
+
+        x_offsets = (
+            horizontal_centering_offsets(text, scale_factor)
+            if x == "centered"
+            else [x, x + (offset * len(text)) - 1]
+        )
+
+        y_offsets = (
+            vertical_centering_offsets(scale_factor)
+            if y == "centered"
+            else [y, y + offset - 1]
+        )
+
+        self.send_command(0x2A, x_offsets)
+        self.send_command(0x2B, y_offsets)
 
         data = text_data(
             text,
@@ -84,7 +102,7 @@ class ST7789v2:
             on_colour=colour,
         )
 
-        self.send_command(0x49, data)
+        self.send_command(0x41, data)
 
 
 screen = ST7789v2()
