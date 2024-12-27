@@ -1,4 +1,10 @@
-from machine import Pin, SoftI2C
+import os
+
+if os.uname().sysname == "esp32":
+    from machine import Pin, SoftI2C
+
+    i2c = SoftI2C(sda=Pin(9), scl=Pin(8), freq=400000)
+
 
 from lib.font_tools import text_data
 from lib.screen_tools import (
@@ -8,7 +14,6 @@ from lib.screen_tools import (
     vertical_centering_offsets,
 )
 
-i2c = SoftI2C(sda=Pin(9), scl=Pin(8), freq=400000)
 device = 0x3E
 
 
@@ -17,7 +22,7 @@ class ST7789v2:
 
     def __init__(
         self,
-        i2c=i2c,
+        i2c,
         device=device,
         background_colour=0,
         brightness=255,
@@ -101,4 +106,5 @@ class ST7789v2:
         self.send_command(0x41, data)
 
 
-screen = ST7789v2()
+if os.uname().sysname == "esp32":
+    screen = ST7789v2(i2c=i2c)
