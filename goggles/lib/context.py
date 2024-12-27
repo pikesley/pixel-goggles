@@ -3,8 +3,8 @@ import os
 pins = {
     "data": 1,
     "button": 0,
-    "sda": 9,
-    "scl": 8,
+    "sda": 9,  # mauve
+    "scl": 8,  # green
 }
 
 leds = 32

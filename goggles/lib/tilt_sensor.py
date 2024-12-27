@@ -16,6 +16,13 @@ limits = {
 }
 
 
+def initialise():
+    """Initialise."""
+    i2c.writeto_mem(device, 0x2D, bytearray([0]))
+    i2c.writeto_mem(device, 0x2D, bytearray([16]))
+    i2c.writeto_mem(device, 0x2D, bytearray([8]))
+
+
 def read_buff():
     """Read the data."""
     return i2c.readfrom_mem(device, reg_address, TO_READ)
