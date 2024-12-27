@@ -56,8 +56,11 @@ class ST7789v2:
 
         self.send_command(command, 0)
 
-    def clear_screen(self):
+    def clear_screen(self, colour=None):
         """Start again."""
+        if colour:
+            self.background_colour = colour
+
         self.fill_screen(self.background_colour)
 
     def fill_screen(self, colour):
