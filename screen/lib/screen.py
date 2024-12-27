@@ -9,7 +9,7 @@ if os.uname().sysname == "esp32":
 from lib.font_tools import text_data
 from lib.screen_tools import (
     horizontal_centering_offsets,
-    rgb_to_332,
+    reduce_colour,
     size,
     vertical_centering_offsets,
 )
@@ -69,9 +69,7 @@ class ST7789v2:
 
     def draw_rect(self, x_left, y_top, x_right, y_bottom, colour):
         """Draw a rectangle."""
-        if not isinstance(colour, int):
-            colour = rgb_to_332(colour)
-
+        colour = reduce_colour(colour)
         self.send_command(0x69, [x_left, y_top, x_right, y_bottom, colour])
 
     def send_command(self, command, data):
@@ -84,10 +82,7 @@ class ST7789v2:
     def write_text(self, text, x, y, colour, scale_factor=2):
         """Write the text at (x, y)."""
         offset = scale_factor * 8
-
-        # TODO pull this out
-        if not isinstance(colour, int):
-            colour = rgb_to_332(colour)
+        colour = reduce_colour(colour)
 
         x_offsets = (
             horizontal_centering_offsets(text, scale_factor)

@@ -29,3 +29,11 @@ def vertical_centering_offsets(scale_factor):
     bottom = int(top + offset - 1)
 
     return [top, bottom]
+
+
+def reduce_colour(rgb):
+    """Detect if we're given an RGB triple and replace with an RGB332 byte."""
+    if not isinstance(rgb, int):
+        rgb = rgb_to_332(rgb)
+
+    return rgb
