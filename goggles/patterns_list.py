@@ -12,9 +12,9 @@ from patterns.tilting_rainbow import tilting_rainbow
 from patterns.wave import wave
 
 patterns = [
+    tilting_rainbow,
     rainbow,
     tilter,
-    tilting_rainbow,
     sparkle,
     spots,
     responder,
