@@ -1,7 +1,7 @@
 import os
 
 pins = {
-    "data": 1, # green
+    "data": 1,  # green
     "button": 0,
     "sda": 9,  # mauve
     "scl": 8,  # green

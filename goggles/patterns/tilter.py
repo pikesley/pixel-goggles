@@ -1,6 +1,6 @@
 from lib.colour_tools import just_an_rgb
 from lib.context import goggles, pixels
-from lib.tilt_sensor import limits, values, initialise
+from lib.tilt_sensor import initialise, limits, values
 from lib.tilt_tooling import filled_points, rotation_lookups
 
 lookups = rotation_lookups(limits["x"]["anticlockwise"], limits["x"]["clockwise"])

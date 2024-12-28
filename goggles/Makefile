@@ -39,7 +39,8 @@ test:
 		--verbose \
 		--capture no \
 		--exitfirst \
-		--last-failed
+		--last-failed \
+		--ignore screen
 
 nuke:
 	python -m esptool \
