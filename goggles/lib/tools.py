@@ -16,15 +16,6 @@ def get_intervals(multiplier):
     return FancyList([int(t * multiplier) for t in intervals])
 
 
-# def colour_pair(pixels, pair, colour=None):
-#     """Apply colour to some indeces."""
-#     if not colour:
-#         colour = just_an_rgb()
-
-#     for index in pair:
-#         pixels[index] = colour
-
-
 def inverse_square_tail(length, coefficient=1, backwards=False):  # noqa: FBT002
     """Inverse-square tail-off values."""
     values = [1 / (2 ** (t * coefficient)) for t in range(length)]
