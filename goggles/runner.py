@@ -35,7 +35,7 @@ def update_screen(index):
     big_colour = (255, 0, 255)
     small_colour = (0, 0, 255)
 
-    y_offset=48
+    y_offset = 48
 
     now_pattern = patterns[index].__name__
     next_pattern = patterns[(index + 1) % len(patterns)].__name__
