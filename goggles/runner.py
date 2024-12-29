@@ -29,24 +29,44 @@ def blink_onboard(duration=100):
 
 def update_screen(index):
     """Update the screen."""
+    big_scale = 2
+    small_scale = 1
+
+    big_colour = (255, 0, 255)
+    small_colour = (0, 0, 255)
+
+    y_offset=48
+
     now_pattern = patterns[index].__name__
     next_pattern = patterns[(index + 1) % len(patterns)].__name__
 
-    screen.write_text(
-        title_case(now_pattern)[:14],
-        x="centered",
-        y="centered",
-        colour=(255, 0, 255),
-        scale_factor=2,
-    )
+    if "_" in now_pattern:
+        now_pattern = now_pattern.split("_")
+        y_offset = y_offset - (big_scale * 4)
+    else:
+        now_pattern = [now_pattern]
 
-    screen.write_text(
-        title_case(next_pattern),
-        x="centered",
-        y=size["y"] - 24,
-        colour=(0, 0, 255),
-        scale_factor=2,
-    )
+    try:
+        for i, line in enumerate(now_pattern):
+            print(line)
+            y_val = y_offset + (i * 8 * big_scale)
+            screen.write_text(
+                title_case(line),
+                x="centered",
+                y=y_val,
+                colour=big_colour,
+                scale_factor=big_scale,
+            )
+
+        screen.write_text(
+            title_case(next_pattern),
+            x="centered",
+            y=size["y"] - 32,
+            colour=small_colour,
+            scale_factor=small_scale,
+        )
+    except MemoryError:
+        pass
 
 
 def title_case(name):
