@@ -15,18 +15,22 @@ def read_index():
     return index
 
 
-def write_index(current_index, length):
+def write_next_index(current_index, length):
     """Write the next index."""
-    state = {"pattern-index": (current_index + 1) % length}
-    file = open(state_file, "w")  # noqa: SIM115, PTH123
-    file.write(json.dumps(state))
-    # file.write(str((current_index + 1) % length))
-    file.close()
+    write_index((current_index + 1) % length)
 
 
 def manage_index(patterns):
     """Handle the stateful indexing."""
     index = read_index()
-    write_index(index, len(patterns))
+    write_next_index(index, len(patterns))
 
     return index
+
+
+def write_index(index):
+    """Write an arbitrary index."""
+    state = {"pattern-index": index}
+    file = open(state_file, "w")  # noqa: SIM115, PTH123
+    file.write(json.dumps(state))
+    file.close()

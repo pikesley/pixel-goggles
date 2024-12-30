@@ -8,7 +8,7 @@ push: reset
 	python -m mpremote cp -r *py :
 	python -m mpremote cp -r lib :
 	python -m mpremote cp -r patterns :
-	# python -m mpremote cp -r screen :
+	python -m mpremote cp -r vendor :
 
 render:
 	rm -fr renders/
@@ -56,3 +56,9 @@ flash:
 		../firmware/c3-current
 
 reinstall: nuke flash push renders connect
+
+install-aioble:
+	rm -fr /tmp/micropython
+	git clone https://github.com/micropython/micropython-lib.git /tmp/micropython
+	mkdir -p vendor
+	rsync -av /tmp/micropython/micropython/bluetooth/aioble vendor/

@@ -2,3 +2,5 @@ secrets.py
 firmware
 renders
 screen
+/bluetooth
+/goggles/vendor
