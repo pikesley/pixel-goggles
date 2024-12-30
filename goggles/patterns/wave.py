@@ -1,11 +1,11 @@
-import time
+import asyncio
 
 from lib.colour_tools import just_an_rgb, scale_colour
 from lib.context import goggles, pixels
 from lib.tools import get_intervals, inverse_square_tail
 
 
-def wave():
+async def wave():
     """Waves of colour."""
     sleep_multiplier = 150
     values = inverse_square_tail(27, coefficient=0.5, backwards=True)
@@ -22,6 +22,6 @@ def wave():
 
         pixels.write()
 
-        time.sleep_ms(intervals.head)
+        await asyncio.sleep_ms(int(intervals.head * 1000))
         intervals.rotate()
         values.rotate(direction="r")

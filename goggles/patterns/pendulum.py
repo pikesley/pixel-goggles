@@ -1,4 +1,4 @@
-import time
+import asyncio
 
 from lib.colour_tools import just_an_rgb, scale_colour
 from lib.context import goggles, pixels
@@ -15,7 +15,7 @@ sequence = sequence(5)
 rotations = FancyList(["anticlockwise", "clockwise"])
 
 
-def pendulum():
+async def pendulum():
     """Spin the wheel."""
     while True:
         rotation = rotations.head
@@ -30,7 +30,7 @@ def pendulum():
 
             try:
                 interval = int(sequence["intervals"][i] * timing_scale)
-                time.sleep_ms(interval)
+                await asyncio.sleep_ms(int(interval * 1000))
             except IndexError:
                 pass
 

@@ -1,11 +1,11 @@
-import time
+import asyncio
 
 from lib.colour_tools import scale_colour, time_based_rgb
 from lib.context import eyes, pixels, ring_size
 from lib.tools import cos_curve, inverse_square_tail
 
 
-def race():
+async def race():
     """Spin the wheel."""
     interval_divider = 50
 
@@ -22,7 +22,7 @@ def race():
             eyes["right"].fill(right_colours)
 
             pixels.write()
-            time.sleep(intervals.head)
+            await asyncio.sleep_ms(int(intervals.head * 1000))
 
             intervals.rotate()
             values.rotate(direction="r")

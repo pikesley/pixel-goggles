@@ -1,4 +1,4 @@
-import time
+import asyncio
 from math import ceil, floor
 from random import randint
 
@@ -7,7 +7,7 @@ from lib.context import goggles, pixels, ring_size
 from lib.tools import cos_curve, random_rotation
 
 
-def spots():
+async def spots():
     """Spots."""
     spots = randint(2, 5)  # noqa: S311
 
@@ -31,7 +31,7 @@ def spots():
                 goggles.right[(get_rounding(k, spots, i))] = colour
 
             pixels.write()
-            time.sleep(intervals.head)
+            await asyncio.sleep_ms(int(intervals.head * 1000))
             intervals.rotate()
 
 

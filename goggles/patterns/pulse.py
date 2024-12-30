@@ -1,11 +1,11 @@
-import time
+import asyncio
 
 from lib.colour_tools import scale_colour, time_based_rgb
 from lib.context import eyes, pixels
 from lib.tools import inverse_square_tail
 
 
-def pulse():
+async def pulse():
     """Pulse."""
     pulse_length = 100
     sleep_time = 5
@@ -38,4 +38,4 @@ def pulse():
                 )
 
             pixels.write()
-            time.sleep_ms(sleep_time)
+            await asyncio.sleep_ms(sleep_time)

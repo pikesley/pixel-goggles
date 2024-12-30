@@ -8,7 +8,7 @@ lookups = rotation_lookups(limits["x"]["anticlockwise"], limits["x"]["clockwise"
 proportion = 0.6
 
 
-def tilter():
+async def tilter():
     """Tilt."""
     initialise()
 

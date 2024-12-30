@@ -1,11 +1,11 @@
-import time
+import asyncio
 
 from lib.colour_tools import scale_colour, spectrum
 from lib.context import goggles, pixels
 from lib.tools import inverse_square_tail
 
 
-def snake():
+async def snake():
     """Spin the wheel."""
     sleep_time = 40
     colours_offset = 4
@@ -26,4 +26,4 @@ def snake():
         values.rotate()
 
         pixels.write()
-        time.sleep_ms(sleep_time)
+        await asyncio.sleep_ms(sleep_time)

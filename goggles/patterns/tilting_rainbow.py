@@ -8,7 +8,7 @@ lookups = rotation_lookups(limits["x"]["anticlockwise"], limits["x"]["clockwise"
 spectrum = spectrum(16)
 
 
-def tilting_rainbow():
+async def tilting_rainbow():
     """Tilt."""
     while True:
         x = values()["x"]

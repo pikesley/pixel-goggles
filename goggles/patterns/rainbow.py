@@ -1,10 +1,10 @@
-import time
+import asyncio
 
 from lib.colour_tools import spectrum
 from lib.context import eyes, pixels, ring_size
 
 
-def rainbow():
+async def rainbow():
     """Spin the wheel."""
     colours = spectrum(ring_size)
     sleep_time = 30
@@ -18,4 +18,4 @@ def rainbow():
 
         pixels.write()
         colours.rotate()
-        time.sleep_ms(sleep_time)
+        await asyncio.sleep_ms(sleep_time)

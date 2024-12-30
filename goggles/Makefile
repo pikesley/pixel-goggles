@@ -8,7 +8,7 @@ push: reset
 	python -m mpremote cp -r *py :
 	python -m mpremote cp -r lib :
 	python -m mpremote cp -r patterns :
-	python -m mpremote cp -r screen :
+	# python -m mpremote cp -r screen :
 
 render:
 	rm -fr renders/

@@ -1,4 +1,4 @@
-import time
+import asyncio
 
 from lib.colour_tools import just_an_rgb, scale_colour
 from lib.context import goggles, pixels, ring_size
@@ -6,7 +6,7 @@ from lib.tools import get_intervals, inverse_square_tail
 from lib.wings import Wings
 
 
-def flying_wave():
+async def flying_wave():
     """Waves of colour."""
     sleep_multiplier = 100
 
@@ -31,4 +31,5 @@ def flying_wave():
 
                 values.rotate()
                 intervals.rotate(direction="r")
-                time.sleep_ms(intervals.head)
+                print(intervals.head)
+                await asyncio.sleep_ms(int(intervals.head * 1000))

@@ -1,4 +1,4 @@
-import time
+import asyncio
 
 import machine
 
@@ -13,7 +13,7 @@ rotate_count = 0
 values = inverse_square_tail(pulse_length, coefficient=tail_coefficient)
 
 
-def responder():
+async def responder():
     """Flash with a button."""
     global rotate_count  # noqa: PLW0603
 
@@ -22,7 +22,7 @@ def responder():
         goggles.left.fill(scale_colour(colour["bytes"], values.head))
         goggles.right.fill(scale_colour(colour["inverse"], values.head))
         pixels.write()
-        time.sleep_ms(sleep_time)
+        await asyncio.sleep_ms(sleep_time)
         rotate_count += 1
 
         if rotate_count < pulse_length:

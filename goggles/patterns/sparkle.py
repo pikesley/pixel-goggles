@@ -1,4 +1,4 @@
-import time
+import asyncio
 from random import randint, random
 
 from lib.colour_tools import just_an_rgb, scale_colour
@@ -6,7 +6,7 @@ from lib.context import pixels
 from lib.tools import inverse_square_tail
 
 
-def sparkle():
+async def sparkle():
     """Sparkle."""
     actives = {}
 
@@ -24,4 +24,4 @@ def sparkle():
                 del actives[index]
 
         pixels.write()
-        time.sleep_ms(randint(10, 300))  # noqa: S311
+        await asyncio.sleep_ms(randint(10, 300))  # noqa: S311
