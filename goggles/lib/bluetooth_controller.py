@@ -5,6 +5,7 @@ import machine
 
 from lib.context import on_board
 from lib.pattern_index_manager import write_index
+from lib.pattern_manager import PatternManager
 from vendor.aioble import aioble
 
 _BLE_SERVICE_UUID = bluetooth.UUID("0823a10a-aebb-4f69-a511-dfa94c4141cd")
@@ -14,6 +15,9 @@ ble_service = aioble.Service(_BLE_SERVICE_UUID)
 led_characteristic = aioble.Characteristic(
     ble_service, _BLE_LED_UUID, read=True, write=True, notify=True, capture=True
 )
+
+
+pattern_manager = PatternManager()
 
 
 async def blink_onboard():
@@ -64,14 +68,10 @@ async def wait_for_write():
     """Receive data."""
     while True:
         try:
-            connection, data = await led_characteristic.written()
-            print(data)
-            print(type)
-            data = _decode_data(data)
-            print("Connection: ", connection)
-            print("Data: ", data)
+            _, data = await led_characteristic.written()
+            data = data.decode()
 
-            write_index(data)
+            write_index(pattern_manager.index_by_name(data))
             machine.reset()
 
         except asyncio.CancelledError:
