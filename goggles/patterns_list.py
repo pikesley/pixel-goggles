@@ -23,6 +23,16 @@ patterns = [
     tilting_rainbow,
 ]
 
+
+def pattern_by_name(name):
+    """Get the index for an entry by its name."""
+    names = [item.__name__ for item in patterns]
+    try:
+        return names.index(name)
+    except ValueError:
+        return 0
+
+
 duff_patterns = [
     pendulum,
     wave,

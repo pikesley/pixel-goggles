@@ -1,6 +1,5 @@
 import asyncio
 
-
 from lib.bluetooth_controller import (
     await_connection,
     ble_service,
