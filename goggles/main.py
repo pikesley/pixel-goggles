@@ -1,6 +1,10 @@
 import asyncio
 
-from lib.bluetooth_controller import await_connection, ble_service, wait_for_write
+from lib.bluetooth_controller import (
+    await_connection,
+    ble_service,
+    wait_for_write,
+)
 from lib.pattern_index_manager import manage_index
 from patterns_list import patterns
 from screen.screen import screen, size
