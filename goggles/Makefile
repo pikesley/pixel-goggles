@@ -7,9 +7,8 @@ reset:
 push: reset
 	python -m mpremote cp -r *py :
 	python -m mpremote cp -r lib :
-	# python -m mpremote cp -r patterns :
-	# python -m mpremote cp -r vendor :
-	# python -m mpremote cp -r screen :
+	python -m mpremote cp -r patterns :
+	python -m mpremote cp -r vendor :
 
 render:
 	rm -fr renders/
@@ -41,8 +40,7 @@ test:
 		--verbose \
 		--capture no \
 		--exitfirst \
-		--last-failed \
-		--ignore screen
+		--last-failed
 
 nuke:
 	python -m esptool \
