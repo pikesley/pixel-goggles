@@ -1,4 +1,28 @@
 <group name="Goggles">
+   <macro name="Pendulum" icon="PLAY">
+      <assert-service description="Ensure 0823a10a-aebb-4f69-a511-dfa94c4141cd service" uuid="0823a10a-aebb-4f69-a511-dfa94c4141cd">
+         <assert-characteristic description="Ensure 71321532-a5df-4af4-8ae1-e5e31ccfc7fd characteristic" uuid="71321532-a5df-4af4-8ae1-e5e31ccfc7fd">
+            <property name="WRITE" requirement="MANDATORY"/>
+         </assert-characteristic>
+      </assert-service>
+      <write description="Write 0x70656E64756C756D to 71321532-a5df-4af4-8ae1-e5e31ccfc7fd" characteristic-uuid="71321532-a5df-4af4-8ae1-e5e31ccfc7fd" service-uuid="0823a10a-aebb-4f69-a511-dfa94c4141cd" value="70656E64756C756D" type="WRITE_REQUEST"/>
+   </macro>
+   <macro name="Flying wave" icon="PLAY">
+      <assert-service description="Ensure 0823a10a-aebb-4f69-a511-dfa94c4141cd service" uuid="0823a10a-aebb-4f69-a511-dfa94c4141cd">
+         <assert-characteristic description="Ensure 71321532-a5df-4af4-8ae1-e5e31ccfc7fd characteristic" uuid="71321532-a5df-4af4-8ae1-e5e31ccfc7fd">
+            <property name="WRITE" requirement="MANDATORY"/>
+         </assert-characteristic>
+      </assert-service>
+      <write description="Write 0x666C79696E675F77617665 to 71321532-a5df-4af4-8ae1-e5e31ccfc7fd" characteristic-uuid="71321532-a5df-4af4-8ae1-e5e31ccfc7fd" service-uuid="0823a10a-aebb-4f69-a511-dfa94c4141cd" value="666C79696E675F77617665" type="WRITE_REQUEST"/>
+   </macro>
+   <macro name="Wave" icon="PLAY">
+      <assert-service description="Ensure 0823a10a-aebb-4f69-a511-dfa94c4141cd service" uuid="0823a10a-aebb-4f69-a511-dfa94c4141cd">
+         <assert-characteristic description="Ensure 71321532-a5df-4af4-8ae1-e5e31ccfc7fd characteristic" uuid="71321532-a5df-4af4-8ae1-e5e31ccfc7fd">
+            <property name="WRITE" requirement="MANDATORY"/>
+         </assert-characteristic>
+      </assert-service>
+      <write description="Write 0x77617665 to 71321532-a5df-4af4-8ae1-e5e31ccfc7fd" characteristic-uuid="71321532-a5df-4af4-8ae1-e5e31ccfc7fd" service-uuid="0823a10a-aebb-4f69-a511-dfa94c4141cd" value="77617665" type="WRITE_REQUEST"/>
+   </macro>
    <macro name="Tilting rainbow" icon="PLAY">
       <assert-service description="Ensure 0823a10a-aebb-4f69-a511-dfa94c4141cd service" uuid="0823a10a-aebb-4f69-a511-dfa94c4141cd">
          <assert-characteristic description="Ensure 71321532-a5df-4af4-8ae1-e5e31ccfc7fd characteristic" uuid="71321532-a5df-4af4-8ae1-e5e31ccfc7fd">

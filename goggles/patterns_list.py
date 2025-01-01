@@ -12,12 +12,15 @@ from patterns.tilting_rainbow import tilting_rainbow
 from patterns.wave import wave
 
 patterns = [
+    flying_wave,
+    wave,
+    pendulum,
+    tilter,
     snake,
     pulse,
     responder,
     race,
     rainbow,
-    tilter,
     sparkle,
     spots,
     tilting_rainbow,
@@ -31,10 +34,3 @@ def pattern_by_name(name):
         return names.index(name)
     except ValueError:
         return 0
-
-
-duff_patterns = [
-    pendulum,
-    wave,
-    flying_wave,
-]

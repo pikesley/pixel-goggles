@@ -30,7 +30,7 @@ async def pendulum():
 
             try:
                 interval = int(sequence["intervals"][i] * timing_scale)
-                await asyncio.sleep_ms(int(interval * 1000))
+                await asyncio.sleep_ms(int(interval))
             except IndexError:
                 pass
 

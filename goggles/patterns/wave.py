@@ -22,6 +22,6 @@ async def wave():
 
         pixels.write()
 
-        await asyncio.sleep_ms(int(intervals.head * 1000))
+        await asyncio.sleep_ms(int(intervals.head))
         intervals.rotate()
         values.rotate(direction="r")

@@ -11,7 +11,7 @@ buff = bytearray(6)
 i2c = SoftI2C(sda=Pin(pins["sda"]), scl=Pin(pins["scl"]), freq=400000)
 
 limits = {
-    "x": {"anticlockwise": -235, "clockwise": 270},
+    "x": {"anticlockwise": -235, "clockwise": 260},
     "y": {"horizontal": 0, "vertical": 260},
 }
 

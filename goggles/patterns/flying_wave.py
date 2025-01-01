@@ -31,5 +31,4 @@ async def flying_wave():
 
                 values.rotate()
                 intervals.rotate(direction="r")
-                print(intervals.head)
-                await asyncio.sleep_ms(int(intervals.head * 1000))
+                await asyncio.sleep_ms(int(intervals.head))
