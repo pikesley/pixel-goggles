@@ -9,6 +9,6 @@ data = {
     "patterns": [p.__name__ for p in patterns],
 }
 
-Path("/opt/esp32/controller/html/data.json").write_text(
+Path("/opt/pixel-goggles/controller/html/data.json").write_text(
     json.dumps(data, indent=2, sort_keys=True), encoding="utf-8"
 )
