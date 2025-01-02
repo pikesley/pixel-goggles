@@ -1,6 +1,8 @@
 # https://github.com/DFRobot/micropython-dflib/blob/master/ADXL345/user_lib/ADXL345.py
+import os
 
-from machine import Pin, SoftI2C
+if os.uname().sysname == "esp32":
+    from machine import Pin, SoftI2C
 
 from lib.context import pins
 
@@ -8,7 +10,8 @@ device = 0x53
 reg_address = 0x32
 TO_READ = 6
 buff = bytearray(6)
-i2c = SoftI2C(sda=Pin(pins["sda"]), scl=Pin(pins["scl"]), freq=400000)
+if os.uname().sysname == "esp32":
+    i2c = SoftI2C(sda=Pin(pins["sda"]), scl=Pin(pins["scl"]), freq=400000)
 
 limits = {
     "x": {"anticlockwise": -235, "clockwise": 260},

@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css?family=Open Sans");
+
+:root {
+    --background-colour: #ffffff;
+    --button-body: #2bebdf;
+    --button-text: #ea6117;
+}
+
+body {
+    font-family: "Open Sans";
+    background-color: var(--background-colour);
+    max-width: 90vw;
+    margin-inline: auto;
+}
+
+h1 {
+    color: var(--button-text);
+    text-align: center;
+    font-size: 5rem;
+}
+
+div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2vh;
+}
+
+span {
+    font-family: "Open Sans";
+    font-size: 2vh;
+    background-color: var(--button-body);
+    color: var(--button-text);
+    padding: 1.5rem;
+    border-radius: 1vh;
+    text-align: center;
+    box-sizing: border-box;
+    border-width: 2px;
+    border-color: var(--button-text);
+    border-style: solid;
+}

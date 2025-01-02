@@ -1,0 +1,20 @@
+{
+  "patterns": [
+    "rainbow",
+    "pulse",
+    "snake",
+    "wave",
+    "tilter",
+    "responder",
+    "flying_wave",
+    "race",
+    "pendulum",
+    "sparkle",
+    "spots",
+    "tilting_rainbow"
+  ],
+  "uuids": {
+    "pattern": "266517c5-cf1c-4f86-a1fc-0dca0066562e",
+    "service": "a29b77fe-e208-40d4-aa7a-6abda275844b"
+  }
+}

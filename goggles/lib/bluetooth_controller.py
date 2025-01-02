@@ -3,18 +3,18 @@ import asyncio
 import bluetooth
 import machine
 
-from lib.context import on_board
+from lib.context import bluetooth_uuids, on_board
 from lib.pattern_index_manager import write_index
 from patterns_list import pattern_by_name
 from vendor.aioble import aioble
 
-_BLE_SERVICE_UUID = bluetooth.UUID("0823a10a-aebb-4f69-a511-dfa94c4141cd")
-_BLE_LED_UUID = bluetooth.UUID("71321532-a5df-4af4-8ae1-e5e31ccfc7fd")
+_BLE_SERVICE_UUID = bluetooth.UUID(bluetooth_uuids["service"])
+_BLE_PATTERN_UUID = bluetooth.UUID(bluetooth_uuids["pattern"])
 
-_ADV_INTERVAL_MS = 250_000
+_ADV_INTERVAL_MS = 25_000
 ble_service = aioble.Service(_BLE_SERVICE_UUID)
 led_characteristic = aioble.Characteristic(
-    ble_service, _BLE_LED_UUID, read=True, write=True, notify=True, capture=True
+    ble_service, _BLE_PATTERN_UUID, read=True, write=True, notify=True, capture=True
 )
 
 
@@ -55,7 +55,9 @@ async def wait_for_write():
     while True:
         try:
             _, data = await led_characteristic.written()
+            print(data)
             data = data.decode()
+            print(data)
 
             write_index(pattern_by_name(data))
             machine.reset()

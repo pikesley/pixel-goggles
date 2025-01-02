@@ -1,6 +1,8 @@
 import asyncio
+import os
 
-import machine
+if os.uname().sysname == "esp32":
+    import machine
 
 from lib.colour_tools import scale_colour, time_based_rgb
 from lib.context import goggles, pins, pixels
@@ -37,5 +39,6 @@ def reset_values(pin):
         values.reset()
 
 
-switch = machine.Pin(pins["button"], machine.Pin.IN)
-switch.irq(trigger=machine.Pin.IRQ_RISING, handler=reset_values)
+if os.uname().sysname == "esp32":
+    switch = machine.Pin(pins["button"], machine.Pin.IN)
+    switch.irq(trigger=machine.Pin.IRQ_RISING, handler=reset_values)

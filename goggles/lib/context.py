@@ -14,6 +14,16 @@ ring_size = 16
 
 defaults = {"brightness": 1.0, "seconds-per-hue-rotation": 50}
 
+bluetooth_uuids = {
+    "service": "a29b77fe-e208-40d4-aa7a-6abda275844b",
+    "pattern": "266517c5-cf1c-4f86-a1fc-0dca0066562e",
+}
+
+# allow importing of `patterns` elsewhere
+goggles = None
+pixels = None
+eyes = None
+
 if os.uname().sysname == "esp32":
     import machine
     import neopixel

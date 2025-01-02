@@ -7,9 +7,10 @@ from lib.tools import inverse_square_tail
 
 async def pulse():
     """Pulse."""
-    pulse_length = 100
+    pulse_length = 64
     sleep_time = 5
     tail_coefficient = 0.07
+    left_right_offset = 4
 
     data = {
         "left": {
@@ -23,7 +24,7 @@ async def pulse():
     }
 
     data["right"]["values"].rotate(
-        steps=int(len(data["right"]["values"]) / 4), direction="r"
+        steps=int(len(data["right"]["values"]) / left_right_offset), direction="r"
     )
 
     while True:
