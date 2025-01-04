@@ -22,11 +22,6 @@ def get_pattern():
     return pattern
 
 
-# def title_case(name):
-#     """Fix up name."""
-#     return " ".join([s[0].upper() + s[1:].lower() for s in name.split("_")])
-
-
 async def main():
     """Run."""
     pattern = get_pattern()
