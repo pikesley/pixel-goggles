@@ -1,4 +1,5 @@
 import asyncio
+import gc
 from random import randint, random
 
 from lib.colour_tools import just_an_rgb, scale_colour
@@ -25,3 +26,4 @@ async def sparkle():
 
         pixels.write()
         await asyncio.sleep_ms(randint(10, 300))  # noqa: S311
+        gc.collect()
