@@ -134,7 +134,7 @@ def render():
                 outpath = Path(*path_elements)
                 print(str(outpath))
                 outpath.write_text(
-                    json.dumps(data[eye][rotation][point]), encoding="utf-8"
+                    json.dumps(data[eye][rotation][point].items), encoding="utf-8"
                 )
 
                 path_elements.pop()
@@ -144,7 +144,7 @@ def render():
 
                 print(str(outpath))
                 outpath.write_text(
-                    json.dumps(data[eye]["pairs"][point]), encoding="utf-8"
+                    json.dumps(data[eye]["pairs"][point].items), encoding="utf-8"
                 )
 
                 path_elements.pop()

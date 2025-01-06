@@ -1,5 +1,6 @@
 {
   "patterns": [
+    "sparkle",
     "rainbow",
     "pulse",
     "snake",
@@ -9,7 +10,6 @@
     "flying_wave",
     "race",
     "pendulum",
-    "sparkle",
     "spots",
     "tilting_rainbow"
   ],
