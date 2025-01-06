@@ -29,8 +29,8 @@ function makeButton(pattern, uuids) {
 }
 
 function sendPattern(characteristic, pattern) {
-    console.log(pattern);
-    characteristic.writeValue(new TextEncoder().encode(pattern))
+  console.log(pattern);
+  characteristic.writeValue(new TextEncoder().encode(pattern));
 }
 
 function populateButtons(buttons, data) {

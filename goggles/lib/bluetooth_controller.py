@@ -10,10 +10,12 @@ from vendor.aioble import aioble
 
 _BLE_SERVICE_UUID = bluetooth.UUID(bluetooth_uuids["service"])
 _BLE_PATTERN_UUID = bluetooth.UUID(bluetooth_uuids["pattern"])
+_BLE_PATTERN_QUERY_UUID = bluetooth.UUID(bluetooth_uuids["pattern-query"])
 
 _ADV_INTERVAL_MS = 25_000
+
 ble_service = aioble.Service(_BLE_SERVICE_UUID)
-led_characteristic = aioble.Characteristic(
+pattern_write_characteristic = aioble.Characteristic(
     ble_service, _BLE_PATTERN_UUID, read=True, write=True, notify=True, capture=True
 )
 
@@ -54,7 +56,7 @@ async def wait_for_write():
     """Receive data."""
     while True:
         try:
-            _, data = await led_characteristic.written()
+            _, data = await pattern_write_characteristic.written()
             print(data)
             data = data.decode()
             print(data)
