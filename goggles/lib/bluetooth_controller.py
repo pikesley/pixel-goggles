@@ -10,7 +10,6 @@ from vendor.aioble import aioble
 
 _BLE_SERVICE_UUID = bluetooth.UUID(bluetooth_uuids["service"])
 _BLE_PATTERN_UUID = bluetooth.UUID(bluetooth_uuids["pattern"])
-_BLE_PATTERN_QUERY_UUID = bluetooth.UUID(bluetooth_uuids["pattern-query"])
 
 _ADV_INTERVAL_MS = 25_000
 

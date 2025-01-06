@@ -17,13 +17,16 @@ patterns = [
     pulse,
     snake,
     wave,
-    tilter,
     responder,
     flying_wave,
     race,
     pendulum,
     spots,
+]
+
+spare_patterns = [
     tilting_rainbow,
+    tilter,
 ]
 
 

@@ -1,51 +1,47 @@
 @import url("https://fonts.googleapis.com/css?family=Open Sans");
 
 :root {
-  --jasper: rgba(219, 80, 74, 1);
-  --bittersweet: rgba(255, 111, 89, 1);
-  --dark-slate-gray: rgba(37, 68, 65, 1);
-  --zomp: rgba(67, 170, 139, 1);
-  --sage: rgba(178, 176, 155, 1);
-    --white: rgb(255, 255, 255);
+  --black: rgb(0, 0, 0);
+  --blue: rgb(27, 11, 241);
+  --green: rgb(21, 214, 21);
 
-  --background-colour: var(--white);
-  --button-body: var(--jasper);
-  --button-text: var(--white);
-  --header-colour: var(--dark-slate-gray);
-  --link-colour: var(--bittersweet)
+  --background-colour: var(--black);
+  --text-colour: var(--blue);
+  --link-colour: var(--green);
 }
 
 body {
   font-family: "Open Sans";
   background-color: var(--background-colour);
-  max-width: 90vw;
+  /* max-width: 90vw; */
   margin-inline: auto;
   text-transform: lowercase;
 }
 
 h1 {
-  color: var(--header-colour);
+  color: var(--text-colour);
   text-align: center;
   font-size: 5rem;
 }
 
 div {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2vh;
+  /* grid-template-columns: 1fr 1fr; */
+  gap: 2rem;
+  margin: 2em;
 }
 
 span {
   font-family: "Open Sans";
-  font-size: 2vh;
-  background-color: var(--button-body);
-  color: var(--button-text);
+  font-size: 4rem;
+  background-color: transparent;
+  color: var(--text-colour);
   padding: 1.5rem;
-  border-radius: 1vh;
+  border-radius: 2rem;
   text-align: center;
   box-sizing: border-box;
   border-width: 2px;
-  border-color: var(--header-colour);
+  border-color: var(--text-colour);
   border-style: solid;
 }
 
@@ -56,7 +52,7 @@ footer {
   margin-inline: auto;
   left: 0;
   right: 0;
-  font-size: 2vh;
+  font-size: 3rem;
 
   a {
     text-decoration: none;

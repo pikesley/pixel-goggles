@@ -5,13 +5,11 @@
     "pulse",
     "snake",
     "wave",
-    "tilter",
     "responder",
     "flying_wave",
     "race",
     "pendulum",
-    "spots",
-    "tilting_rainbow"
+    "spots"
   ],
   "uuids": {
     "pattern": "266517c5-cf1c-4f86-a1fc-0dca0066562e",
