@@ -1,4 +1,5 @@
 import asyncio
+import gc
 
 from lib.colour_tools import scale_colour, spectrum
 from lib.context import goggles, pixels
@@ -7,7 +8,7 @@ from lib.tools import inverse_square_tail
 
 async def snake():
     """Spin the wheel."""
-    sleep_time = 40
+    sleep_time = 25
     colours_offset = 4
 
     goggles.left.load_ordering(point="e", rotation="clockwise", overlap=True)
@@ -27,3 +28,4 @@ async def snake():
 
         pixels.write()
         await asyncio.sleep_ms(sleep_time)
+        gc.collect()

@@ -1,4 +1,5 @@
 import asyncio
+import gc
 
 from lib.colour_tools import just_an_rgb, scale_colour
 from lib.context import goggles, pixels
@@ -36,6 +37,7 @@ async def pendulum():
 
         sequence["indeces"].reverse()
         rotations.rotate()
+        gc.collect()
 
 
 def offset(index, amount, rotation):

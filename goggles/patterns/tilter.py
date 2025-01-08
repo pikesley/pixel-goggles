@@ -1,3 +1,6 @@
+import asyncio
+import gc
+
 from lib.colour_tools import just_an_rgb
 from lib.context import goggles, pixels
 from lib.tilt_sensor import initialise, limits, values
@@ -11,6 +14,7 @@ proportion = 0.6
 async def tilter():
     """Tilt."""
     initialise()
+    sleep_time = 10
 
     while True:
         x = values()["x"]
@@ -27,3 +31,5 @@ async def tilter():
             goggles.right[point] = colour
 
         pixels.write()
+        await asyncio.sleep_ms(sleep_time)
+        gc.collect()

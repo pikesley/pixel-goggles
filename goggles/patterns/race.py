@@ -1,4 +1,5 @@
 import asyncio
+import gc
 
 from lib.colour_tools import scale_colour, time_based_rgb
 from lib.context import eyes, pixels, ring_size
@@ -26,3 +27,4 @@ async def race():
 
             intervals.rotate()
             values.rotate(direction="r")
+            gc.collect()

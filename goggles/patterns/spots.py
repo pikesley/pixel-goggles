@@ -1,4 +1,5 @@
 import asyncio
+import gc
 from math import ceil, floor
 from random import randint
 
@@ -33,6 +34,7 @@ async def spots():
             pixels.write()
             await asyncio.sleep_ms(int(intervals.head * 1000))
             intervals.rotate()
+            gc.collect()
 
 
 def get_rounding(k, spots, i):

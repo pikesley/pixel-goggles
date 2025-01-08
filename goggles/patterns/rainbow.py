@@ -1,4 +1,5 @@
 import asyncio
+import gc
 
 from lib.colour_tools import spectrum
 from lib.context import eyes, pixels, ring_size
@@ -19,3 +20,4 @@ async def rainbow():
         pixels.write()
         colours.rotate()
         await asyncio.sleep_ms(sleep_time)
+        gc.collect()

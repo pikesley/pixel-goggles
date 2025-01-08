@@ -1,4 +1,5 @@
 import asyncio
+import gc
 
 from lib.colour_tools import just_an_rgb, scale_colour
 from lib.context import goggles, pixels, ring_size
@@ -32,3 +33,4 @@ async def flying_wave():
                 values.rotate()
                 intervals.rotate(direction="r")
                 await asyncio.sleep_ms(int(intervals.head))
+                gc.collect()

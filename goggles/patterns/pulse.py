@@ -1,4 +1,5 @@
 import asyncio
+import gc
 
 from lib.colour_tools import scale_colour, time_based_rgb
 from lib.context import eyes, pixels
@@ -40,3 +41,4 @@ async def pulse():
 
             pixels.write()
             await asyncio.sleep_ms(sleep_time)
+            gc.collect()
