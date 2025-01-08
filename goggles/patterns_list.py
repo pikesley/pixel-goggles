@@ -3,7 +3,9 @@ from patterns.pendulum import pendulum
 from patterns.pulse import pulse
 from patterns.race import race
 from patterns.rainbow import rainbow
+from patterns.random_dance import random_dance
 from patterns.responder import responder
+from patterns.riser import riser
 from patterns.snake import snake
 from patterns.sparkle import sparkle
 from patterns.spots import spots
@@ -12,21 +14,23 @@ from patterns.tilting_rainbow import tilting_rainbow
 from patterns.wave import wave
 
 patterns = [
-    sparkle,
-    rainbow,
-    pulse,
-    snake,
+    riser,
     wave,
-    responder,
-    flying_wave,
-    race,
-    pendulum,
+    random_dance,
     spots,
+    sparkle,
+    snake,
+    rainbow,
+    race,
+    pulse,
+    flying_wave,
 ]
 
 spare_patterns = [
-    tilting_rainbow,
+    responder,
+    pendulum,
     tilter,
+    tilting_rainbow,
 ]
 
 
