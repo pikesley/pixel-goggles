@@ -41,6 +41,6 @@ def test_rgb_from_degrees():
     }
 
     assert rgb_from_degrees(0, brightness=0.5) == {
-        "bytes": (127, 0, 0),
-        "inverse": (0, 127, 127),
+        "bytes": (36, 0, 0),
+        "inverse": (0, 36, 36),
     }

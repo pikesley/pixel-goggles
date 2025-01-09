@@ -3,6 +3,7 @@ from math import floor
 
 from lib.context import defaults
 from lib.fancy_list import FancyList
+from lib.gamma import gamma_corrections
 
 
 def get_segments():
@@ -46,9 +47,16 @@ def rgb_from_degrees(degrees, brightness=None):
     rgb = [segment.get(x, offset) for x in ["red", "green", "blue"]]
 
     return {
-        "bytes": tuple([int(x * 255 * brightness) for x in rgb]),
-        "inverse": tuple([int((255 - (x * 255)) * brightness) for x in rgb]),
+        "bytes": tuple([gamma_correct(int(x * 255 * brightness)) for x in rgb]),
+        "inverse": tuple(
+            [gamma_correct(int((255 - (x * 255)) * brightness)) for x in rgb]
+        ),
     }
+
+
+def gamma_correct(value):
+    """Gamma-correct."""
+    return gamma_corrections[value]
 
 
 def rgb_from_hue(decimal, brightness=None):
@@ -68,7 +76,6 @@ def just_an_rgb():
 
 def spectrum(length):
     """Generate a spectrum."""
-    # feels like we're missing some orange
     interval = 360 / length
     return FancyList([rgb_from_degrees(i * interval)["bytes"] for i in range(length)])
 
