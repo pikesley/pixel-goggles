@@ -2,8 +2,8 @@ import asyncio
 import gc
 from math import floor
 
-from lib.colour_tools import spectrum, scale_colour
-from lib.context import eyes, pixels, goggles
+from lib.colour_tools import spectrum
+from lib.context import eyes, pixels
 from lib.tools import cos_curve
 
 interval_divider = 30
