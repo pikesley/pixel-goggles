@@ -2,11 +2,11 @@ import asyncio
 
 import bluetooth
 import machine
+from vendor.aioble import aioble
 
 from lib.context import bluetooth_uuids, on_board
 from lib.pattern_index_manager import write_index
 from patterns_list import pattern_by_name
-from vendor.aioble import aioble
 
 _BLE_SERVICE_UUID = bluetooth.UUID(bluetooth_uuids["service"])
 _BLE_PATTERN_UUID = bluetooth.UUID(bluetooth_uuids["pattern"])
