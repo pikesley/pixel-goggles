@@ -1,8 +1,9 @@
 {
   "patterns": [
+    "sunburst",
+    "random_dance",
     "riser",
     "wave",
-    "random_dance",
     "spots",
     "sparkle",
     "snake",
@@ -12,7 +13,7 @@
     "flying_wave"
   ],
   "uuids": {
-    "pattern": "266517c5-cf1c-4f86-a1fc-0dca0066562e",
-    "service": "a29b77fe-e208-40d4-aa7a-6abda275844b"
+    "pattern": "f880be7a-8265-478a-8409-e68ca1d81c4f",
+    "service": "6a074824-cdf1-44df-b577-d4015cb2f8f3"
   }
 }

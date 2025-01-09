@@ -15,8 +15,8 @@ ring_size = 16
 defaults = {"brightness": 1.0, "seconds-per-hue-rotation": 50}
 
 bluetooth_uuids = {
-    "service": "a29b77fe-e208-40d4-aa7a-6abda275844b",
-    "pattern": "266517c5-cf1c-4f86-a1fc-0dca0066562e",
+    "service": "6a074824-cdf1-44df-b577-d4015cb2f8f3",
+    "pattern": "f880be7a-8265-478a-8409-e68ca1d81c4f",
 }
 
 # allow importing of `patterns` elsewhere
