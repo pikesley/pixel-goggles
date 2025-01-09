@@ -14,10 +14,12 @@ pulse_length = 18
 values = FancyList([i / 10 for i in [0] * 9 + list(range(10)) + [10] * 9])
 values.reverse()
 
-rainbow = spectrum(18)
+rainbow_length = 48
+rainbow = spectrum(rainbow_length)
 rainbow.reverse()
+rainbow.items = rainbow.items[(rainbow_length - 9) :]
 
-sleep_time = 5
+sleep_time = 7
 rotate_count = 0
 
 
