@@ -15,6 +15,7 @@ async def random_dance():
         "direction": 0.9,
         "colour": 0.99,
         "chaos": 0.99,
+        "long_interval": 0.99,
     }
 
     while True:
@@ -42,7 +43,12 @@ async def random_dance():
             populate(eyes["right"], parameters)
 
         pixels.write()
-        await asyncio.sleep_ms(randint(*time_range))  # noqa: S311
+
+        interval = randint(*time_range)  # noqa: S311
+        if random() > degeneracy_thresholds["long_interval"]:  # noqa: S311
+            interval *= 10
+
+        await asyncio.sleep_ms(interval)
         gc.collect()
 
 
