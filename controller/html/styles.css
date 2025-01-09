@@ -2,11 +2,11 @@
 
 :root {
   --black: rgb(0, 0, 0);
-  --blue: rgb(27, 11, 241);
+  --cyan: rgb(10, 216, 223);
   --green: rgb(21, 214, 21);
 
   --background-colour: var(--black);
-  --text-colour: var(--blue);
+  --text-colour: var(--cyan);
   --link-colour: var(--green);
 }
 
