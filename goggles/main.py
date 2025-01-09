@@ -1,13 +1,14 @@
 import asyncio
 
+from vendor.aioble import aioble
+
 from lib.bluetooth_controller import await_connection, ble_service, wait_for_write
 from lib.pattern_index_manager import manage_index
 from patterns_list import patterns
-from vendor.aioble import aioble
 
 
 def get_pattern():
-    """Do the work."""
+    """Select a pattern."""
     index = manage_index(patterns)
 
     try:
