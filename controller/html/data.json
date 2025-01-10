@@ -1,16 +1,17 @@
 {
   "patterns": [
-    "sunburst",
-    "random_dance",
-    "riser",
-    "wave",
-    "spots",
-    "sparkle",
-    "snake",
-    "rainbow",
-    "race",
+    "smooth",
+    "jumper",
     "pulse",
-    "flying_wave"
+    "race",
+    "rainbow",
+    "dancer",
+    "snake",
+    "sparkle",
+    "spots",
+    "tilter",
+    "wave",
+    "wings"
   ],
   "uuids": {
     "pattern": "f880be7a-8265-478a-8409-e68ca1d81c4f",

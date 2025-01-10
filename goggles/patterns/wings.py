@@ -7,7 +7,7 @@ from lib.tools import get_intervals, inverse_square_tail
 from lib.wings import Wings
 
 
-async def flying_wave():
+async def wings():
     """Waves of colour."""
     sleep_multiplier = 100
 

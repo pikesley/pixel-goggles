@@ -7,17 +7,21 @@ from lib.context import eyes, pixels, ring_size
 
 async def rainbow():
     """Spin the wheel."""
-    colours = spectrum(ring_size)
+    config = {
+        "left": {"colours": spectrum(ring_size), "rotation": "l", "steps": 1},
+        "right": {"colours": spectrum(ring_size), "rotation": "r", "steps": 1},
+    }
+
     sleep_time = 30
 
-    for eye in eyes.values():
-        eye.load_ordering()
-
     while True:
-        for eye in eyes.values():
-            eye.fill(colours)
+        for side, data in config.items():
+            eyes[side].fill(data["colours"])
 
         pixels.write()
-        colours.rotate()
+
+        for data in config.values():
+            data["colours"].rotate(direction=data["rotation"], steps=data["steps"])
+
         await asyncio.sleep_ms(sleep_time)
         gc.collect()

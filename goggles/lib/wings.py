@@ -4,7 +4,7 @@ class Wings:
     # TODO: maybe a full circle?
     def __init__(self):
         """Construct."""
-        self.patterns = ["nx", "xnx", "x", "xsx", "sx"]
+        self.patterns = ["n", "nnx", "nx", "xnx", "x", "xsx", "sx", "ssx", "s"]
         self.patterns += list(reversed(self.patterns[1:-1]))
         self.index = 0
 
