@@ -45,7 +45,8 @@ span {
   border-style: solid;
 }
 
-span:hover {
+span:hover,
+span:active {
   background-color: var(--text-colour);
   color: var(--background-colour);
   border-color: var(--background-colour);
