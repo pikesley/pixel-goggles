@@ -56,7 +56,7 @@ def rgb_from_degrees(degrees, brightness=None):
 
 def gamma_correct(value):
     """Gamma-correct."""
-    return gamma_corrections[value]
+    return gamma_corrections[value % 360]
 
 
 def rgb_from_hue(decimal, brightness=None):
