@@ -150,7 +150,7 @@ outpath.mkdir(parents=True, exist_ok=True)
 
 for key in normalised_locations[0]:
     if key != "index":
-        Path(outpath, f"{key}.json").write_text(
+        Path(outpath, f"{key}s.json").write_text(
             json.dumps([i[key] for i in normalised_locations], indent=2),
             encoding="utf-8",
         )
