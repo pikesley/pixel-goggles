@@ -1,0 +1,20 @@
+{
+  "bluetooth": {
+    "uuids": {
+      "pattern": "f880be7a-8265-478a-8409-e68ca1d81c4f",
+      "service": "6a074824-cdf1-44df-b577-d4015cb2f8f3"
+    }
+  },
+  "defaults": {
+    "brightness": 1,
+    "seconds-per-hue-rotation": 50
+  },
+  "leds": 32,
+  "pins": {
+    "button": 0,
+    "data": 1,
+    "scl": 8,
+    "sda": 9
+  },
+  "ring-size": 16
+}

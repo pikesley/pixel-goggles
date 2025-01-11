@@ -23,8 +23,8 @@ sleep_time = 7
 rotate_count = 0
 
 
-async def riser():
-    """Rise with a button."""
+async def dancer():
+    """Dance with a button."""
     global rotate_count  # noqa: PLW0603
     goggles.left.load_ordering("sse", rotation="pairs")
     goggles.right.load_ordering("ssw", rotation="pairs")

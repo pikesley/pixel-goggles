@@ -25,6 +25,7 @@ push: reset
 	python -m mpremote cp -r goggles/*py :
 	python -m mpremote cp -r goggles/lib :
 	python -m mpremote cp -r goggles/patterns :
+	python -m mpremote cp -r goggles/conf :
 	python -m mpremote cp -r vendor :
 
 connect:

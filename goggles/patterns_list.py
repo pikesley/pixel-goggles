@@ -1,11 +1,10 @@
-from patterns.flying_wave import flying_wave
+from patterns.dancer import dancer
+from patterns.jumper import jumper
 from patterns.pendulum import pendulum
 from patterns.pulse import pulse
 from patterns.race import race
 from patterns.rainbow import rainbow
-from patterns.random_dance import random_dance
-from patterns.responder import responder
-from patterns.riser import riser
+from patterns.smooth import smooth
 from patterns.snake import snake
 from patterns.sparkle import sparkle
 from patterns.spots import spots
@@ -13,25 +12,26 @@ from patterns.sunburst import sunburst
 from patterns.tilter import tilter
 from patterns.tilting_rainbow import tilting_rainbow
 from patterns.wave import wave
+from patterns.wings import wings
 
 patterns = [
-    sunburst,
-    random_dance,
-    riser,
-    wave,
-    spots,
-    sparkle,
-    snake,
-    rainbow,
-    race,
+    dancer,
+    jumper,
     pulse,
-    flying_wave,
+    race,
+    rainbow,
+    smooth,
+    snake,
+    sparkle,
+    spots,
+    wave,
+    wings,
 ]
 
 spare_patterns = [
-    responder,
-    pendulum,
     tilter,
+    pendulum,
+    sunburst,
     tilting_rainbow,
 ]
 

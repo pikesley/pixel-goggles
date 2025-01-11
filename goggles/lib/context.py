@@ -1,23 +1,13 @@
+import json
 import os
 
-pins = {
-    "data": 1,  # green
-    "button": 0,
-    "sda": 9,  # mauve
-    "scl": 8,  # green
-}
+conf = json.load(open("conf/conf.json"))  # noqa: SIM115, PTH123
 
-# 3.3v pin: yellow, from button
-
-leds = 32
-ring_size = 16
-
-defaults = {"brightness": 1.0, "seconds-per-hue-rotation": 50}
-
-bluetooth_uuids = {
-    "service": "6a074824-cdf1-44df-b577-d4015cb2f8f3",
-    "pattern": "f880be7a-8265-478a-8409-e68ca1d81c4f",
-}
+pins = conf["pins"]
+leds = conf["leds"]
+ring_size = conf["ring-size"]
+defaults = conf["defaults"]
+bluetooth_uuids = conf["bluetooth"]["uuids"]
 
 # allow importing of `patterns` elsewhere
 goggles = None
