@@ -1,15 +1,14 @@
 {
   "patterns": [
-    "smooth",
+    "dancer",
     "jumper",
     "pulse",
     "race",
     "rainbow",
-    "dancer",
+    "smooth",
     "snake",
     "sparkle",
     "spots",
-    "tilter",
     "wave",
     "wings"
   ],

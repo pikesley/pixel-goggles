@@ -1,7 +1,6 @@
 class Wings:
     """Wave about."""
 
-    # TODO: maybe a full circle?
     def __init__(self):
         """Construct."""
         self.patterns = ["n", "nnx", "nx", "xnx", "x", "xsx", "sx", "ssx", "s"]
