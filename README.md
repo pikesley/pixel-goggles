@@ -1,4 +1,6 @@
-# Sparkly gogglee
+[![CI](https://github.com/pikesley/pixel-goggles/actions/workflows/main.yml/badge.svg)](https://github.com/pikesley/pixel-goggles/actions/workflows/main.yml)
+
+# Sparkly goggles
 
 From scratch:
 
