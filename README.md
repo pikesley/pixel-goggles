@@ -1,3 +1,5 @@
+[![CI](https://github.com/pikesley/pixel-goggles/actions/workflows/main.yml/badge.svg)](https://github.com/pikesley/pixel-goggles/actions/workflows/main.yml)
+
 # Sparkly gogglee
 
 From scratch:
@@ -10,7 +12,6 @@ make run
 Then
 
 ```bash
-make render
 make
 exit
 ```
