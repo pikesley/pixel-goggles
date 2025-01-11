@@ -1,7 +1,7 @@
 default: format test export-controller-data clean
 
 render:
-	rm -fr renders/
+	rm -fr conf/renders/
 	python renderer.py
 
 format:
