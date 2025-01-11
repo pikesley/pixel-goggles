@@ -17,6 +17,15 @@ run:
 		${ID} \
 		bash
 
+test:
+	docker run \
+		--name ${ID} \
+		--hostname ${ID} \
+		--workdir /opt/${ID}/goggles \
+		--rm \
+		${ID} \
+		test
+
 reset:
 	$(shell echo '{"pattern-index": 0}' > /tmp/state.json)
 	python -m mpremote cp /tmp/state.json :
