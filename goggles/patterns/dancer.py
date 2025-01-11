@@ -19,7 +19,7 @@ rainbow = spectrum(rainbow_length)
 rainbow.reverse()
 rainbow.items = rainbow.items[(rainbow_length - 9) :]
 
-sleep_time = 7
+sleep_time = 3
 rotate_count = 0
 
 

@@ -31,10 +31,6 @@ push: reset
 connect:
 	python -m mpremote
 
-.PHONY: renders
-renders:
-	python -m mpremote cp -r goggles/renders :
-
 nuke:
 	python -m esptool \
 		--chip esp32c3 \
@@ -47,7 +43,7 @@ flash:
 		0x0 \
 		../esp32-firmware/c3-current
 
-reinstall: nuke flash install-aioble push renders connect
+reinstall: nuke flash install-aioble push connect
 
 install-aioble:
 	rm -fr /tmp/micropython

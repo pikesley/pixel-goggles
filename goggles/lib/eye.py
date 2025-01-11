@@ -20,7 +20,7 @@ class Eye:
         """Set our ordering."""
         self.prime_point = point
         self.ordering = json.load(
-            open(f"renders/eyes/{self.side}/{point}/{rotation}.json")  # noqa: SIM115, PTH123
+            open(f"conf/renders/eyes/{self.side}/{point}/{rotation}.json")  # noqa: SIM115, PTH123
         )
         if overlap:
             self.ordering = self.ordering + [self.ordering[0]]  # noqa: RUF005

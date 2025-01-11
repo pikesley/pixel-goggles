@@ -113,6 +113,7 @@ final_locations = []
 for side in ["left", "right"]:
     mapping = json.loads(
         Path(
+            "conf",
             "renders",
             "eyes",
             side,

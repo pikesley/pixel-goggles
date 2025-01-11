@@ -102,7 +102,7 @@ def test_make_pairs():
 
 def test_file_hashes():
     """Test it made the same files."""
-    target = Path("renders", "eyes").glob("**/*")
+    target = Path("conf", "renders", "eyes").glob("**/*")
     hashes = []
 
     for item in target:

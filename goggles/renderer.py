@@ -118,7 +118,7 @@ def render():
         },
     }
 
-    path_elements = ["renders", "eyes"]
+    path_elements = ["conf", "renders", "eyes"]
 
     for eye in data:
         path_elements.append(eye)

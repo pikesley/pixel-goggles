@@ -6,7 +6,7 @@ from lib.colour_tools import rgb_from_hue, scale_colour
 from lib.context import eyes, goggles, pixels, ring_size
 
 
-async def jumper():
+async def random_dots():
     """Random jumper."""
     max_active_dots = 2
     time_range = (10, 100)
