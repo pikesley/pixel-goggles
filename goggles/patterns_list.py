@@ -1,9 +1,9 @@
 from patterns.dancer import dancer
-from patterns.jumper import jumper
 from patterns.pendulum import pendulum
 from patterns.pulse import pulse
 from patterns.race import race
 from patterns.rainbow import rainbow
+from patterns.random_dots import random_dots
 from patterns.smooth import smooth
 from patterns.snake import snake
 from patterns.sparkle import sparkle
@@ -15,12 +15,12 @@ from patterns.wave import wave
 from patterns.wings import wings
 
 patterns = [
+    smooth,
     dancer,
-    jumper,
+    random_dots,
     pulse,
     race,
     rainbow,
-    smooth,
     snake,
     sparkle,
     spots,
