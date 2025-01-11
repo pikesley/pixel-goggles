@@ -12,7 +12,6 @@ make run
 Then
 
 ```bash
-make render
 make
 exit
 ```
