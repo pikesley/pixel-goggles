@@ -10,6 +10,7 @@ from lib.random_hue_source import RandomHueSource
 
 async def wiper():
     """Wipe colours."""
+    sides = ["left", "right"]
     hue_sources = {
         "left": RandomHueSource(),
         "right": RandomHueSource(),
@@ -18,13 +19,13 @@ async def wiper():
     sleep_limits = (5, 30)
 
     while True:
-        for side in ["left", "right"]:
-            eye = eyes[side]
-            point = random_point()
-            colour = rgb_from_hue(hue_sources[side].hue())["bytes"]
-            sleep_time = randint(*sleep_limits)  # noqa: S311
+        side = sides[randint(0, 1)]  # noqa: S311
+        eye = eyes[side]
+        point = random_point()
+        colour = rgb_from_hue(hue_sources[side].hue())["bytes"]
+        sleep_time = randint(*sleep_limits)  # noqa: S311
 
-            await populate_eye(eye, point, colour, sleep_time)
+        await populate_eye(eye, point, colour, sleep_time)
 
         gc.collect()
 
