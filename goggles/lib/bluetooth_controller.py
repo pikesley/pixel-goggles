@@ -4,7 +4,7 @@ import bluetooth
 import machine
 from vendor.aioble import aioble
 
-from lib.context import bluetooth_uuids, on_board
+from lib.context import bluetooth_uuids, goggles, on_board, pixels
 from lib.pattern_index_manager import write_index
 from patterns_list import pattern_by_name
 
@@ -59,6 +59,9 @@ async def wait_for_write():
             print(data)
             data = data.decode()
             print(data)
+
+            goggles.fill((0, 0, 127))
+            pixels.write()
 
             write_index(pattern_by_name(data))
             machine.reset()
