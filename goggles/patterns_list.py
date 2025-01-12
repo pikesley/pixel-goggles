@@ -13,19 +13,21 @@ from patterns.tilter import tilter
 from patterns.tilting_rainbow import tilting_rainbow
 from patterns.wave import wave
 from patterns.wings import wings
+from patterns.wiper import wiper
 
 patterns = [
-    smooth,
     dancer,
-    random_dots,
     pulse,
     race,
     rainbow,
+    random_dots,
+    smooth,
     snake,
     sparkle,
     spots,
     wave,
     wings,
+    wiper,
 ]
 
 spare_patterns = [

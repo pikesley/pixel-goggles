@@ -1,5 +1,6 @@
 {
   "patterns": [
+    "wiper",
     "smooth",
     "dancer",
     "random_dots",
