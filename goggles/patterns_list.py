@@ -16,18 +16,18 @@ from patterns.wings import wings
 from patterns.wiper import wiper
 
 patterns = [
-    dancer,
-    pulse,
-    race,
-    rainbow,
-    random_dots,
-    smooth,
-    snake,
-    sparkle,
-    spots,
-    wave,
-    wings,
     wiper,
+    wings,
+    wave,
+    spots,
+    sparkle,
+    snake,
+    smooth,
+    random_dots,
+    rainbow,
+    race,
+    pulse,
+    dancer,
 ]
 
 spare_patterns = [
