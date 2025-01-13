@@ -80,3 +80,20 @@ def assign_ranges(anticlockwise_limit, clockwise_limit):
         )
 
     return ranges
+
+
+def fade_points(top, base=5, factor=4):
+    """Generate fade values."""
+    starting_points = {point: 1.0 for point in compass_points}
+    extent = int(9 - base)
+    top_index = compass_points.index(top)
+    opposite_index = (top_index + 8) % 16
+
+    for i in range(extent):
+        offset = base + i
+        for constant in [offset, -offset]:
+            starting_points[compass_points[(opposite_index + (constant)) % 16]] = (
+                1 / factor**i
+            )
+
+    return starting_points

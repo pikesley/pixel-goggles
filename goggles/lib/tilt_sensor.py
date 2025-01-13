@@ -14,8 +14,9 @@ if os.uname().sysname == "esp32":
     i2c = SoftI2C(sda=Pin(pins["sda"]), scl=Pin(pins["scl"]), freq=400000)
 
 limits = {
-    "x": {"anticlockwise": -235, "clockwise": 260},
-    "y": {"horizontal": 0, "vertical": 260},
+    "z": {"anticlockwise": -220, "clockwise": 280},
+    # "x": {"anticlockwise": -249, "clockwise": 227},
+    # "y": {"horizontal": 0, "vertical": 260},
 }
 
 
@@ -49,10 +50,13 @@ def values(restricted=True):  # noqa: FBT002
     }
 
     if restricted:
-        vals["x"] = min(vals["x"], limits["x"]["clockwise"])
-        vals["x"] = max(vals["x"], limits["x"]["anticlockwise"])
+        # vals["x"] = min(vals["x"], limits["x"]["clockwise"])
+        # vals["x"] = max(vals["x"], limits["x"]["anticlockwise"])
 
-        vals["y"] = min(vals["y"], limits["y"]["vertical"])
-        vals["y"] = max(vals["y"], limits["y"]["horizontal"])
+        # vals["y"] = min(vals["y"], limits["y"]["vertical"])
+        # vals["y"] = max(vals["y"], limits["y"]["horizontal"])
+
+        vals["z"] = min(vals["z"], limits["z"]["clockwise"])
+        vals["z"] = max(vals["z"], limits["z"]["anticlockwise"])
 
     return vals

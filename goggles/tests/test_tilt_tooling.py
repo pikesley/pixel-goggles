@@ -1,5 +1,6 @@
 from lib.tilt_tooling import (
     assign_ranges,
+    fade_points,
     filled_points,
     locate_points,
     rotation_lookups,
@@ -179,4 +180,44 @@ def test_rotation_lookups():
         6: "wnw",
         7: "wnw",
         8: "w",
+    }
+
+
+def test_fade_points():
+    """Test fade-points."""
+    assert fade_points("n") == {
+        "n": 0.015625,
+        "nnw": 0.0625,
+        "nw": 0.25,
+        "wnw": 1.0,
+        "w": 1.0,
+        "wsw": 1.0,
+        "sw": 1.0,
+        "ssw": 1.0,
+        "s": 1.0,
+        "sse": 1.0,
+        "se": 1.0,
+        "ese": 1.0,
+        "e": 1.0,
+        "ene": 1.0,
+        "ne": 0.25,
+        "nne": 0.0625,
+    }
+    assert fade_points("nne") == {
+        "n": 0.0625,
+        "nnw": 0.25,
+        "nw": 1.0,
+        "wnw": 1.0,
+        "w": 1.0,
+        "wsw": 1.0,
+        "sw": 1.0,
+        "ssw": 1.0,
+        "s": 1.0,
+        "sse": 1.0,
+        "se": 1.0,
+        "ese": 1.0,
+        "e": 1.0,
+        "ene": 0.25,
+        "ne": 0.0625,
+        "nne": 0.015625,
     }

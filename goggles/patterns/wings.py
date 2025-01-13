@@ -9,7 +9,7 @@ from lib.wings import Wings
 
 async def wings():
     """Waves of colour."""
-    sleep_multiplier = 100
+    sleep_multiplier = 70
 
     wings = Wings()
 
