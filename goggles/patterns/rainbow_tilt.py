@@ -6,21 +6,21 @@ from lib.context import goggles, pixels
 from lib.tilt_sensor import initialise, limits, values
 from lib.tilt_tooling import rotation_lookups
 
-lookups = rotation_lookups(limits["x"]["anticlockwise"], limits["x"]["clockwise"])
+lookups = rotation_lookups(limits["z"]["anticlockwise"], limits["z"]["clockwise"])
 
 spectrum = spectrum(16)
 
 
-async def tilting_rainbow():
+async def rainbow_tilt():
     """Tilt."""
     initialise()
-    sleep_time = 10
+    sleep_time = 2
 
     while True:
-        x = values()["x"]
+        z = values()["z"]
 
-        goggles.left.load_ordering(point=lookups[x], rotation="clockwise")
-        goggles.right.load_ordering(point=lookups[x], rotation="clockwise")
+        goggles.left.load_ordering(point=lookups[z], rotation="clockwise")
+        goggles.right.load_ordering(point=lookups[z], rotation="clockwise")
 
         goggles.left.fill(spectrum)
         goggles.right.fill(spectrum)
