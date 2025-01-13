@@ -25,15 +25,15 @@ patterns = [
     smooth,
     random_dots,
     rainbow,
-    rainbow_tilt,
     race,
     pulse,
     dancer,
 ]
 
 spare_patterns = [
-    spots,
     pendulum,
+    rainbow_tilt,
+    spots,
     sunburst,
 ]
 
