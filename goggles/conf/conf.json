@@ -6,7 +6,7 @@
     }
   },
   "defaults": {
-    "brightness": 1,
+    "brightness": 1.0,
     "seconds-per-hue-rotation": 50
   },
   "leds": 32,
