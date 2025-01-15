@@ -141,16 +141,16 @@ for item in final_locations:
 
     normalised_locations.append(item)
 
-Path("conf", "locations.json").write_text(
-    json.dumps(normalised_locations, indent=2), encoding="utf-8"
-)
+# Path("conf", "locations.json").write_text(
+#     json.dumps(normalised_locations, indent=2), encoding="utf-8"
+# )
 
 
 outpath = Path("conf", "locations")
 outpath.mkdir(parents=True, exist_ok=True)
 
 for key in normalised_locations[0]:
-    if key != "index":
+    if key == "angle":
         Path(outpath, f"{key}s.json").write_text(
             json.dumps([i[key] for i in normalised_locations], indent=2),
             encoding="utf-8",
