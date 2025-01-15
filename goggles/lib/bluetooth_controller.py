@@ -56,7 +56,6 @@ async def wait_for_write():
     while True:
         try:
             _, data = await pattern_write_characteristic.written()
-            print(data)
             data = data.decode()
             print(data)
 
