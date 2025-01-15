@@ -1,12 +1,12 @@
 import json
 
-state_file = "state.json"
+next_state_file = "state.json"
 
 
 def read_index():
     """Get the current index."""
     try:
-        file = open(state_file)  # noqa: SIM115, PTH123
+        file = open(next_state_file)  # noqa: SIM115, PTH123
         data = json.loads(file.read())
         index = data["pattern-index"]
     except OSError:
@@ -31,6 +31,6 @@ def manage_index(patterns):
 def write_index(index):
     """Write an arbitrary index."""
     state = {"pattern-index": index}
-    file = open(state_file, "w")  # noqa: SIM115, PTH123
+    file = open(next_state_file, "w")  # noqa: SIM115, PTH123
     file.write(json.dumps(state))
     file.close()
