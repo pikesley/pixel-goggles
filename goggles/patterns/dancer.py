@@ -14,10 +14,9 @@ pulse_length = 18
 values = FancyList([i / 10 for i in [0] * 9 + list(range(10)) + [10] * 9])
 values.reverse()
 
-rainbow_length = 48
+rainbow_length = 50
 rainbow = spectrum(rainbow_length)
 rainbow.reverse()
-rainbow.items = rainbow.items[(rainbow_length - 9) :]
 
 sleep_time = 3
 rotate_count = 0
@@ -30,9 +29,7 @@ async def dancer():
     goggles.right.load_ordering("ssw", rotation="pairs")
 
     while True:
-        colours = []
-        for index, colour in enumerate(rainbow):
-            colours.append(scale_colour(colour, values[index]))
+        colours = [scale_colour(rainbow[index], values[index]) for index in range(9)]
 
         goggles.left.fill(colours)
         goggles.right.fill(colours)
@@ -43,6 +40,7 @@ async def dancer():
             values.rotate()
 
         await asyncio.sleep_ms(sleep_time)
+        rainbow.rotate(direction="r")
 
         gc.collect()
 
