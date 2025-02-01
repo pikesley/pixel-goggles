@@ -6,8 +6,8 @@ from lib.context import goggles, pixels
 from lib.tools import get_intervals, inverse_square_tail
 
 
-async def wave():
-    """Waves of colour."""
+async def larson():
+    """Knightrider."""
     sleep_multiplier = 50
     length = 36
     values = inverse_square_tail(length, coefficient=0.5, backwards=True)
