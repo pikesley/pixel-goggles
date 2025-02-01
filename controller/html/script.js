@@ -25,6 +25,8 @@ function makeButton(pattern, uuids) {
       });
   });
 
+  button.style.setProperty("background-image", "url(/images/" + pattern + ".png)")
+
   return button;
 }
 
